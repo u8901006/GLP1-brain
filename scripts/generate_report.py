@@ -397,7 +397,7 @@ def generate_html(analysis: dict) -> str:
 
   <footer>
     <span>\u8cc7\u6599\u4f86\u6e90\uff1aPubMed &middot; \u5206\u6790\u6a21\u578b\uff1a{MODEL_NAME}</span>
-    <span><a href="https://github.com/u8901006/school-refusal">GitHub</a></span>
+    <span><a href="https://github.com/u8901006/GLP1-brain">GitHub</a></span>
   </footer>
 </div>
 </body>

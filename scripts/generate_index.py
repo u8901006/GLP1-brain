@@ -58,7 +58,7 @@ index = f"""<!DOCTYPE html>
   <p class="count">\u5171 {total} \u671f\u65e5\u5831</p>
   <ul>{links}</ul>
   <footer>
-    <p>Powered by PubMed + Zhipu AI &middot; <a href="https://github.com/u8901006/school-refusal">GitHub</a></p>
+    <p>Powered by PubMed + Zhipu AI &middot; <a href="https://github.com/u8901006/GLP1-brain">GitHub</a></p>
   </footer>
 </div>
 </body>

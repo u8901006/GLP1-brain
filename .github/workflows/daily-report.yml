@@ -97,4 +97,4 @@ jobs:
           echo "### 📄 GLP-1 Daily Report" >> $GITHUB_STEP_SUMMARY
           echo "**Date:** ${{ steps.date.outputs.target }}" >> $GITHUB_STEP_SUMMARY
           echo "**Papers analyzed:** ${{ steps.papers.outputs.count }}" >> $GITHUB_STEP_SUMMARY
-          echo "**Report:** [glp1-${{ steps.date.outputs.target }}.html](https://u8901006.github.io/school-refusal/glp1-${{ steps.date.outputs.target }}.html)" >> $GITHUB_STEP_SUMMARY
+          echo "**Report:** [glp1-${{ steps.date.outputs.target }}.html](https://u8901006.github.io/GLP1-brain/glp1-${{ steps.date.outputs.target }}.html)" >> $GITHUB_STEP_SUMMARY
