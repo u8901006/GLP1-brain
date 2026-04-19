@@ -7,7 +7,9 @@ Reads papers JSON, analyzes with AI, generates styled HTML page.
 import json
 import sys
 import os
+import glob as glob_mod
 import time
+import re
 import argparse
 from datetime import datetime, timezone, timedelta
 
@@ -16,19 +18,19 @@ import httpx
 API_BASE = os.environ.get(
     "ZHIPU_API_BASE", "https://open.bigmodel.cn/api/coding/paas/v4"
 )
-MODEL_NAME = os.environ.get("ZHIPU_MODEL", "glm-5.1")
+MODEL_NAME = os.environ.get("ZHIPU_MODEL", "glm-5-turbo")
 
 SYSTEM_PROMPT = (
-    "你是 GLP-1 受體促效劑與代謝醫學領域的資深研究員與科學傳播者。你的任務是：\n"
-    "1. 從提供的醫學文獻中，篩選出最具臨床意義與研究價值的論文\n"
-    "2. 對每篇論文進行繁體中文摘要、分類、PICO 分析\n"
-    "3. 評估其臨床實用性（高/中/低）\n"
-    "4. 生成適合醫療專業人員閱讀的日報\n\n"
+    "你是 GLP-1 受體促效劑領域的資深醫藥記者與分析師。你的任務是：\n"
+    "1. 從提供的論文摘要中，整理出最具臨床價值與新聞價值的重點\n"
+    "2. 每篇研究必須包含中文簡明摘要、研究亮點及 PICO 分析\n"
+    "3. 標記臨床實用性（高/中/低）\n"
+    "4. 生成適合專業人士與一般讀者閱讀的內容\n\n"
     "輸出格式要求：\n"
     "- 語言：繁體中文（台灣用語）\n"
-    "- 專業但易懂\n"
-    "- 每篇論文需包含：中文標題、一句話總結、PICO分析、臨床實用性、分類標籤\n"
-    "- 最後提供今日精選 TOP 3（最重要/最影響臨床實踐的論文）\n"
+    "- 專業術語保留原文\n"
+    "- 每篇研究必須包含：中文標題、一句話總結、PICO分析、臨床實用性、研究亮點\n"
+    "- 最後提供今日 TOP 3（最重要/最影響臨床實用性的研究）\n\n"
     "回傳格式必須是純 JSON，不要用 markdown code block 包裹。"
 )
 
@@ -37,33 +39,110 @@ def load_papers(input_path: str) -> dict:
     if input_path == "-":
         data = json.load(sys.stdin)
     else:
-        with open(input_path, "r", encoding="utf-8") as f:
+        with open(input_path, "r", encoding="utf-8-sig") as f:
             data = json.load(f)
     return data
 
 
-def analyze_papers(api_key: str, papers_data: dict) -> dict:
+def load_seen_pmids(docs_dir: str = "docs") -> set:
+    seen = set()
+    html_files = glob_mod.glob(os.path.join(docs_dir, "glp1-*.html"))
+    for html_path in html_files:
+        try:
+            with open(html_path, "r", encoding="utf-8") as f:
+                content = f.read()
+            for m in re.finditer(r'PMID[:\s]*(\d+)', content):
+                seen.add(m.group(1))
+            for m in re.finditer(r'/pubmed/(\d+)', content):
+                seen.add(m.group(1))
+        except Exception:
+            pass
+    return seen
+
+
+def extract_pmids_from_papers(papers_data: dict) -> set:
+    pmids = set()
+    for paper in papers_data.get("papers", []):
+        pmid = paper.get("pmid") or paper.get("PMID") or paper.get("uid") or ""
+        if pmid:
+            pmids.add(str(pmid))
+    return pmids
+
+
+def robust_json_parse(text: str) -> dict:
+    text = text.lstrip("\ufeff")
+    if text.startswith("```"):
+        text = text.split("\n", 1)[1] if "\n" in text else text[3:]
+        text = text.rstrip("`").strip()
+    text = text.strip().strip("`").strip()
+    if text.startswith("```"):
+        text = text[3:]
+        if text.startswith("json"):
+            text = text[4:]
+        text = text.strip()
+    if text.endswith("```"):
+        text = text[:-3].strip()
+
+    start = text.find("{")
+    end = text.rfind("}")
+    if start != -1 and end != -1 and end > start:
+        text = text[start:end + 1]
+
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+
+    text = re.sub(r',\s*([}\]])', r'\1', text)
+    text = text.replace("'", '"')
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+
+    print(f"[ERROR] JSON parse failed. Raw response (first 500 chars): {text[:500]}", file=sys.stderr)
+    raise json.JSONDecodeError("Failed to parse JSON after cleanup", text, 0)
+
+
+def analyze_papers(api_key: str, papers_data: dict, seen_pmids: set = None) -> dict:
+    if seen_pmids is None:
+        seen_pmids = set()
+
     tz_taipei = timezone(timedelta(hours=8))
     date_str = papers_data.get("date", datetime.now(tz_taipei).strftime("%Y-%m-%d"))
     paper_count = papers_data.get("count", 0)
-    papers_text = json.dumps(
-        papers_data.get("papers", []), ensure_ascii=False, indent=2
-    )
 
-    prompt = f"""以下是 {date_str} 從 PubMed 抓取的最新 GLP-1 受體促效劑相關文獻（共 {paper_count} 篇）。
+    filtered_papers = []
+    for paper in papers_data.get("papers", []):
+        pmid = str(paper.get("pmid") or paper.get("PMID") or paper.get("uid") or "")
+        if pmid and pmid in seen_pmids:
+            continue
+        filtered_papers.append(paper)
 
+    removed_count = paper_count - len(filtered_papers)
+    if removed_count > 0:
+        print(f"[INFO] Filtered out {removed_count} previously seen papers", file=sys.stderr)
+
+    papers_text = json.dumps(filtered_papers, ensure_ascii=False, indent=2)
+
+    seen_hint = ""
+    if seen_pmids:
+        seen_hint = f"\n以下 PMID 已經在之前的日報中出現過，請排除：{', '.join(sorted(seen_pmids))}\n"
+
+    prompt = f"""以下是 {date_str} 從 PubMed 擷取的最新 GLP-1 受體促效劑相關論文（共 {len(filtered_papers)} 篇）。
+{seen_hint}
 請進行以下分析，並以 JSON 格式回傳（不要用 markdown code block）：
 
 {{
   "date": "{date_str}",
-  "market_summary": "1-2句話總結今天文獻的整體趨勢與亮點",
+  "market_summary": "1-2句總結今日論文整體趨勢與亮點",
   "top_picks": [
     {{
       "rank": 1,
       "title_zh": "中文標題",
       "title_en": "English Title",
       "journal": "期刊名",
-      "summary": "一句話總結（繁體中文，點出核心發現與臨床意義）",
+      "summary": "一句話總結（繁體中文，凸出核心發現與臨床意義）",
       "pico": {{
         "population": "研究對象",
         "intervention": "介入措施",
@@ -71,10 +150,10 @@ def analyze_papers(api_key: str, papers_data: dict) -> dict:
         "outcome": "主要結果"
       }},
       "clinical_utility": "高/中/低",
-      "utility_reason": "為什麼實用的一句話說明",
+      "utility_reason": "臨床實用性的一句話說明",
       "tags": ["標籤1", "標籤2"],
-      "url": "原文連結",
-      "emoji": "相關emoji"
+      "url": "連結網址",
+      "emoji": "適當emoji"
     }}
   ],
   "all_papers": [
@@ -85,23 +164,23 @@ def analyze_papers(api_key: str, papers_data: dict) -> dict:
       "summary": "一句話總結",
       "clinical_utility": "高/中/低",
       "tags": ["標籤1"],
-      "url": "連結",
+      "url": "網址",
       "emoji": "emoji"
     }}
   ],
   "keywords": ["關鍵字1", "關鍵字2"],
   "topic_distribution": {{
-    "肥胖治療": 3,
+    "肥胖與體重": 3,
     "第二型糖尿病": 2
   }}
 }}
 
-原始文獻資料：
+原始論文資料：
 {papers_text}
 
 請篩選出最重要的 TOP 5-8 篇論文放入 top_picks（按重要性排序），其餘放入 all_papers。
-每篇 paper 的 tags 請從以下選擇：肥胖治療、第二型糖尿病、心血管保護、慢性腎病、MASLD/MASH、睡眠呼吸中止症、慢性疼痛、纖維肌痛、耳鳴、暈眩、腦霧、憂鬱症、焦慮症、認知功能、成癮行為、酒精使用、暴食症、抗老醫學、食慾調控、體重管理、代謝症候群、藥物比較、真實世界數據、臨床試驗、系統性回顧。
-記住：回傳純 JSON，不要用 ```json``` 包裹。"""
+每篇 paper 的 tags 請從以下選擇：肥胖與體重、第二型糖尿病、心血管保護、慢性腎病、MASLD/MASH、睡眠呼吸中止症、慢性疼痛、認知衰退、試驗、疫苗、孕期、關節炎、骨質疏鬆、成癮行為、免疫調節、憂鬱症、酒癮、功能性胃腸、代謝效應、癌症風險、食慾調控、跨適應症、真實世界數據、臨床指南、副作用。
+注意：回傳純 JSON，不要用 ```json``` 包裹。"""
 
     headers = {
         "Authorization": f"Bearer {api_key}",
@@ -116,10 +195,10 @@ def analyze_papers(api_key: str, papers_data: dict) -> dict:
         ],
         "temperature": 0.3,
         "top_p": 0.9,
-        "max_tokens": 8192,
+        "max_tokens": 100000,
     }
 
-    models_to_try = [MODEL_NAME, "glm-4-flash", "glm-4"]
+    models_to_try = [MODEL_NAME, "glm-4.7", "glm-4.7-flash"]
 
     for model in models_to_try:
         payload["model"] = model
@@ -132,7 +211,7 @@ def analyze_papers(api_key: str, papers_data: dict) -> dict:
                     f"{API_BASE}/chat/completions",
                     headers=headers,
                     json=payload,
-                    timeout=120,
+                    timeout=660,
                 )
                 if resp.status_code == 429:
                     wait = 60 * (attempt + 1)
@@ -142,11 +221,8 @@ def analyze_papers(api_key: str, papers_data: dict) -> dict:
                 resp.raise_for_status()
                 data = resp.json()
                 text = data["choices"][0]["message"]["content"].strip()
-                if text.startswith("```"):
-                    text = text.split("\n", 1)[1] if "\n" in text else text[3:]
-                    text = text.rstrip("`").strip()
 
-                result = json.loads(text)
+                result = robust_json_parse(text)
                 print(
                     f"[INFO] Analysis complete: {len(result.get('top_picks', []))} top picks, {len(result.get('all_papers', []))} total",
                     file=sys.stderr,
@@ -344,12 +420,19 @@ def generate_html(analysis: dict) -> str:
   .clinic-name {{ font-size: 15px; font-weight: 700; color: var(--text); flex: 1; }}
   .clinic-desc {{ font-size: 12px; color: var(--muted); margin-top: 2px; }}
   .clinic-arrow {{ font-size: 18px; color: var(--accent); font-weight: 700; }}
+  .subscribe-banner {{ display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }}
+  .subscribe-link {{ display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(61,36,15,0.04); flex: 1; min-width: 200px; }}
+  .subscribe-link:hover {{ border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }}
+  .sub-icon {{ font-size: 28px; flex-shrink: 0; }}
+  .sub-name {{ font-size: 15px; font-weight: 700; color: var(--text); }}
+  .sub-desc {{ font-size: 12px; color: var(--muted); margin-top: 2px; }}
+  .sub-arrow {{ font-size: 18px; color: var(--accent); font-weight: 700; margin-left: auto; }}
   footer {{ margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; animation: fadeUp 0.5s ease 0.5s both; }}
   footer a {{ color: var(--muted); text-decoration: none; }}
   footer a:hover {{ color: var(--accent); }}
   @keyframes fadeDown {{ from {{ opacity: 0; transform: translateY(-16px); }} to {{ opacity: 1; transform: translateY(0); }} }}
   @keyframes fadeUp {{ from {{ opacity: 0; transform: translateY(16px); }} to {{ opacity: 1; transform: translateY(0); }} }}
-  @media (max-width: 600px) {{ .container {{ padding: 36px 18px 60px; }} .summary-card, .news-card {{ padding: 20px 18px; }} .pico-grid {{ grid-template-columns: 1fr; }} footer {{ flex-direction: column; gap: 6px; text-align: center; }} .topic-name {{ width: 70px; font-size: 11px; }} }}
+  @media (max-width: 600px) {{ .container {{ padding: 36px 18px 60px; }} .summary-card, .news-card {{ padding: 20px 18px; }} .pico-grid {{ grid-template-columns: 1fr; }} footer {{ flex-direction: column; gap: 6px; text-align: center; }} .topic-name {{ width: 70px; font-size: 11px; }} .subscribe-banner {{ flex-direction: column; }} }}
 </style>
 </head>
 <body>
@@ -388,6 +471,24 @@ def generate_html(analysis: dict) -> str:
       </div>
       <span class="clinic-arrow">\u2192</span>
     </a>
+    <div class="subscribe-banner">
+      <a href="https://blog.leepsyclinic.com/" class="subscribe-link" target="_blank">
+        <span class="sub-icon">\U0001f4ec</span>
+        <div>
+          <div class="sub-name">\u8a02\u95b1\u96fb\u5b50\u5831</div>
+          <div class="sub-desc">blog.leepsyclinic.com</div>
+        </div>
+        <span class="sub-arrow">\u2192</span>
+      </a>
+      <a href="https://buymeacoffee.com/CYlee" class="subscribe-link" target="_blank">
+        <span class="sub-icon">\u2615</span>
+        <div>
+          <div class="sub-name">Buy me a coffee</div>
+          <div class="sub-desc">buymeacoffee.com/CYlee</div>
+        </div>
+        <span class="sub-arrow">\u2192</span>
+      </a>
+    </div>
   </div>
 
   <footer>
@@ -407,6 +508,9 @@ def main():
     parser.add_argument("--output", required=True, help="Output HTML file")
     parser.add_argument(
         "--api-key", default=os.environ.get("ZHIPU_API_KEY", ""), help="Zhipu API key"
+    )
+    parser.add_argument(
+        "--docs-dir", default="docs", help="Docs directory for dedup"
     )
     args = parser.parse_args()
 
@@ -430,7 +534,10 @@ def main():
             "topic_distribution": {},
         }
     else:
-        analysis = analyze_papers(args.api_key, papers_data)
+        seen_pmids = load_seen_pmids(args.docs_dir)
+        if seen_pmids:
+            print(f"[INFO] Found {len(seen_pmids)} previously seen PMIDs", file=sys.stderr)
+        analysis = analyze_papers(args.api_key, papers_data, seen_pmids)
         if not analysis:
             print("[ERROR] Analysis failed, cannot generate report", file=sys.stderr)
             sys.exit(1)
