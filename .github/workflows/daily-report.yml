@@ -2,7 +2,7 @@ name: GLP-1 Daily Report
 
 on:
   schedule:
-    - cron: "0 18 * * *" # UTC 18:00 = 台北時間 02:00
+    - cron: "0 18 * * *"
   workflow_dispatch:
     inputs:
       date:
@@ -12,10 +12,19 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -91,6 +100,18 @@ jobs:
           git commit -m "📄 GLP-1 daily report: ${{ steps.date.outputs.target }}"
           git pull --rebase origin main
           git push
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
       - name: Summary
         run: |
