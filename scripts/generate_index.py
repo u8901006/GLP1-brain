@@ -12,7 +12,7 @@ for f in html_files[:30]:
     date = name.replace("glp1-", "").replace(".html", "")
     try:
         d = datetime.strptime(date, "%Y-%m-%d")
-        date_display = d.strftime("%Y年%-m月%-d日")
+        date_display = f"{d.year}年{d.month}月{d.day}日"
     except Exception:
         date_display = date
     weekday = (
@@ -22,7 +22,7 @@ for f in html_files[:30]:
         if len(date) == 10
         else ""
     )
-    links += f'<li><a href="{name}">\U0001f4c5 {date_display}\uff08\u9031{weekday}\uff09</a></li>\n'
+    links += f'<li><a href="{name}">\U0001f4c5 {date_display}（週{weekday}）</a></li>\n'
 
 total = len(html_files)
 
@@ -31,7 +31,7 @@ index = f"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>GLP-1 Brain \u00b7 GLP-1 \u6587\u737b\u65e5\u5831</title>
+<title>GLP-1 Brain \u00b7 GLP-1 文獻日報</title>
 <style>
   :root {{ --bg: #f6f1e8; --surface: #fffaf2; --line: #d8c5ab; --text: #2b2118; --muted: #766453; --accent: #8c4f2b; --accent-soft: #ead2bf; }}
   *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
@@ -45,6 +45,12 @@ index = f"""<!DOCTYPE html>
   li {{ margin-bottom: 8px; }}
   a {{ color: var(--text); text-decoration: none; display: block; padding: 14px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; transition: all 0.2s; font-size: 15px; }}
   a:hover {{ background: var(--accent-soft); border-color: var(--accent); transform: translateX(4px); }}
+  .actions {{ display: flex; gap: 12px; margin-top: 40px; margin-bottom: 40px; flex-wrap: wrap; }}
+  .action-card {{ flex: 1; min-width: 200px; display: flex; align-items: center; gap: 14px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; text-decoration: none; color: var(--text); transition: all 0.2s; }}
+  .action-card:hover {{ background: var(--accent-soft); border-color: var(--accent); transform: translateY(-2px); }}
+  .action-icon {{ font-size: 28px; flex-shrink: 0; }}
+  .action-title {{ font-size: 14px; font-weight: 700; }}
+  .action-desc {{ font-size: 11px; color: var(--muted); margin-top: 2px; }}
   footer {{ margin-top: 56px; text-align: center; font-size: 12px; color: var(--muted); }}
   footer a {{ display: inline; padding: 0; background: none; border: none; color: var(--muted); }}
   footer a:hover {{ color: var(--accent); }}
@@ -54,9 +60,25 @@ index = f"""<!DOCTYPE html>
 <div class="container">
   <div class="logo">\U0001f9ea</div>
   <h1>GLP-1 Brain</h1>
-  <p class="subtitle">GLP-1 \u6587\u737b\u65e5\u5831 \u00b7 \u6bcf\u65e5\u81ea\u52d5\u66f4\u65b0</p>
-  <p class="count">\u5171 {total} \u671f\u65e5\u5831</p>
+  <p class="subtitle">GLP-1 文獻日報 \u00b7 每日自動更新</p>
+  <p class="count">共 {total} 期日報</p>
   <ul>{links}</ul>
+  <div class="actions">
+    <a href="https://blog.leepsyclinic.com/" class="action-card" target="_blank">
+      <span class="action-icon">\U0001f4ec</span>
+      <div class="action-text">
+        <div class="action-title">訂閱電子報</div>
+        <div class="action-desc">接收最新 GLP-1 研究動態</div>
+      </div>
+    </a>
+    <a href="https://buymeacoffee.com/CYlee" class="action-card" target="_blank">
+      <span class="action-icon">\u2615</span>
+      <div class="action-text">
+        <div class="action-title">Buy me a coffee</div>
+        <div class="action-desc">支持這個計畫持續運作</div>
+      </div>
+    </a>
+  </div>
   <footer>
     <p>Powered by PubMed + Zhipu AI &middot; <a href="https://github.com/u8901006/GLP1-brain">GitHub</a></p>
   </footer>
