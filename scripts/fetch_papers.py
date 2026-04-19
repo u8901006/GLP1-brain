@@ -189,6 +189,36 @@ def fetch_details(pmids: list[str]) -> list[dict]:
     return papers
 
 
+def load_seen_pmids(seen_file: str) -> dict:
+    try:
+        with open(seen_file, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def get_seen_pmid_set(seen_data: dict, days: int = 7) -> set[str]:
+    cutoff = (datetime.now(timezone(timedelta(hours=8))) - timedelta(days=days)).strftime("%Y-%m-%d")
+    pmids = set()
+    for date_key, id_list in seen_data.items():
+        if date_key >= cutoff:
+            pmids.update(id_list)
+    return pmids
+
+
+def prune_seen_data(seen_data: dict, days: int = 7) -> dict:
+    cutoff = (datetime.now(timezone(timedelta(hours=8))) - timedelta(days=days)).strftime("%Y-%m-%d")
+    return {k: v for k, v in seen_data.items() if k >= cutoff}
+
+
+def save_seen_pmids(seen_file: str, seen_data: dict, new_pmids: list[str], days: int = 7):
+    today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
+    pruned = prune_seen_data(seen_data, days=days)
+    pruned[today] = pruned.get(today, []) + new_pmids
+    with open(seen_file, "w", encoding="utf-8") as f:
+        json.dump(pruned, f, ensure_ascii=False, indent=2)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Fetch GLP-1 papers from PubMed")
     parser.add_argument("--days", type=int, default=7, help="Lookback days")
@@ -197,7 +227,13 @@ def main():
     )
     parser.add_argument("--output", default="-", help="Output file (- for stdout)")
     parser.add_argument("--json", action="store_true", help="Output as JSON")
+    parser.add_argument("--seen-file", default="seen_pmids.json", help="Seen PMIDs file for dedup")
+    parser.add_argument("--seen-days", type=int, default=7, help="Days to keep seen PMIDs")
     args = parser.parse_args()
+
+    seen_data = load_seen_pmids(args.seen_file)
+    seen_set = get_seen_pmid_set(seen_data, days=args.seen_days)
+    print(f"[INFO] Loaded {len(seen_set)} seen PMIDs from {args.seen_file}", file=sys.stderr)
 
     queries = build_queries(days=args.days)
     all_pmids = set()
@@ -211,8 +247,9 @@ def main():
             file=sys.stderr,
         )
 
-    pmid_list = list(all_pmids)[: args.max_papers]
-    print(f"[INFO] Fetching details for {len(pmid_list)} papers...", file=sys.stderr)
+    new_pmids = all_pmids - seen_set
+    pmid_list = list(new_pmids)[: args.max_papers]
+    print(f"[INFO] After dedup: {len(new_pmids)} new, fetching {len(pmid_list)}", file=sys.stderr)
 
     if not pmid_list:
         print("NO_CONTENT", file=sys.stderr)
@@ -234,6 +271,10 @@ def main():
 
     papers = fetch_details(pmid_list)
     print(f"[INFO] Fetched details for {len(papers)} papers", file=sys.stderr)
+
+    fetched_pmids = [p["pmid"] for p in papers if p.get("pmid")]
+    save_seen_pmids(args.seen_file, seen_data, fetched_pmids, days=args.seen_days)
+    print(f"[INFO] Updated {args.seen_file} with {len(fetched_pmids)} new PMIDs", file=sys.stderr)
 
     output_data = {
         "date": datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d"),
