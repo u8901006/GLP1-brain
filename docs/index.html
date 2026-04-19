@@ -17,6 +17,12 @@
   li { margin-bottom: 8px; }
   a { color: var(--text); text-decoration: none; display: block; padding: 14px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; transition: all 0.2s; font-size: 15px; }
   a:hover { background: var(--accent-soft); border-color: var(--accent); transform: translateX(4px); }
+  .actions { display: flex; gap: 12px; margin-top: 40px; margin-bottom: 40px; flex-wrap: wrap; }
+  .action-card { flex: 1; min-width: 200px; display: flex; align-items: center; gap: 14px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; text-decoration: none; color: var(--text); transition: all 0.2s; }
+  .action-card:hover { background: var(--accent-soft); border-color: var(--accent); transform: translateY(-2px); }
+  .action-icon { font-size: 28px; flex-shrink: 0; }
+  .action-title { font-size: 14px; font-weight: 700; }
+  .action-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
   footer { margin-top: 56px; text-align: center; font-size: 12px; color: var(--muted); }
   footer a { display: inline; padding: 0; background: none; border: none; color: var(--muted); }
   footer a:hover { color: var(--accent); }
@@ -40,6 +46,22 @@
 <li><a href="glp1-2026-04-11.html">📅 2026年4月11日（週六）</a></li>
 <li><a href="glp1-2026-04-11-v2.html">📅 2026-04-11-v2（週）</a></li>
 </ul>
+  <div class="actions">
+    <a href="https://blog.leepsyclinic.com/" class="action-card" target="_blank">
+      <span class="action-icon">📬</span>
+      <div class="action-text">
+        <div class="action-title">訂閱電子報</div>
+        <div class="action-desc">接收最新 GLP-1 研究動態</div>
+      </div>
+    </a>
+    <a href="https://buymeacoffee.com/CYlee" class="action-card" target="_blank">
+      <span class="action-icon">☕</span>
+      <div class="action-text">
+        <div class="action-title">Buy me a coffee</div>
+        <div class="action-desc">支持這個計畫持續運作</div>
+      </div>
+    </a>
+  </div>
   <footer>
     <p>Powered by PubMed + Zhipu AI &middot; <a href="https://github.com/u8901006/GLP1-brain">GitHub</a></p>
   </footer>
