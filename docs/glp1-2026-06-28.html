@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GLP-1 Brain &middot; GLP-1 文獻日報 &middot; 2026年6月28日</title>
+<meta name="description" content="2026年6月28日 GLP-1 受體促效劂文獻日報，由 AI 自動彙整 PubMed 最新論文"/>
+<style>
+  :root { --bg: #f6f1e8; --surface: #fffaf2; --line: #d8c5ab; --text: #2b2118; --muted: #766453; --accent: #8c4f2b; --accent-soft: #ead2bf; --card-bg: color-mix(in srgb, var(--surface) 92%, white); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: radial-gradient(circle at top, #fff6ea 0, var(--bg) 55%, #ead8c6 100%); color: var(--text); font-family: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; overflow-x: hidden; }
+  .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; animation: fadeDown 0.6s ease both; }
+  .logo { width: 48px; height: 48px; border-radius: 14px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 20px rgba(140,79,43,0.25); }
+  .header-text h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .header-meta { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; align-items: center; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; letter-spacing: 0.3px; }
+  .badge-date { background: var(--accent-soft); border: 1px solid var(--line); color: var(--accent); }
+  .badge-count { background: rgba(140,79,43,0.06); border: 1px solid var(--line); color: var(--muted); }
+  .badge-source { background: transparent; color: var(--muted); font-size: 11px; padding: 0 4px; }
+  .summary-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 28px 32px; margin-bottom: 32px; box-shadow: 0 20px 60px rgba(61,36,15,0.06); animation: fadeUp 0.5s ease 0.1s both; }
+  .summary-card h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent); margin-bottom: 16px; }
+  .summary-text { font-size: 15px; line-height: 1.8; color: var(--text); }
+  .section { margin-bottom: 36px; animation: fadeUp 0.5s ease both; }
+  .section-title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .section-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: var(--accent-soft); }
+  .news-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 22px 26px; margin-bottom: 12px; box-shadow: 0 8px 30px rgba(61,36,15,0.04); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+  .news-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .news-card.featured { border-left: 3px solid var(--accent); }
+  .news-card.featured:hover { border-color: var(--accent); }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .rank-badge { background: var(--accent); color: #fff7f0; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 6px; }
+  .emoji-icon { font-size: 18px; }
+  .card-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .emoji-sm { font-size: 14px; }
+  .news-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+  .journal-source { font-size: 12px; color: var(--accent); margin-bottom: 8px; opacity: 0.8; }
+  .news-card p { font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+  .card-footer { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag { padding: 2px 9px; background: var(--accent-soft); border-radius: 999px; font-size: 11px; color: var(--accent); }
+  .news-card a { font-size: 12px; color: var(--accent); text-decoration: none; opacity: 0.7; margin-left: auto; }
+  .news-card a:hover { opacity: 1; }
+  .utility-high { color: #5a7a3a; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(90,122,58,0.1); border-radius: 4px; }
+  .utility-mid { color: #9f7a2e; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(159,122,46,0.1); border-radius: 4px; }
+  .utility-low { color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(118,100,83,0.08); border-radius: 4px; }
+  .utility-sm { font-size: 10px; }
+  .pico-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; padding: 12px; background: rgba(255,253,249,0.8); border-radius: 14px; border: 1px solid var(--line); }
+  .pico-item { display: flex; gap: 8px; align-items: baseline; }
+  .pico-label { font-size: 10px; font-weight: 700; color: #fff7f0; background: var(--accent); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
+  .pico-text { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .keywords-section { margin-bottom: 36px; }
+  .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .keyword { padding: 5px 14px; background: var(--accent-soft); border: 1px solid var(--line); border-radius: 20px; font-size: 12px; color: var(--accent); cursor: default; transition: background 0.2s; }
+  .keyword:hover { background: rgba(140,79,43,0.18); }
+  .topic-section { margin-bottom: 36px; }
+  .topic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .topic-name { font-size: 13px; color: var(--muted); width: 100px; flex-shrink: 0; text-align: right; }
+  .topic-bar-bg { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .topic-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #c47a4a); border-radius: 4px; transition: width 0.6s ease; }
+  .topic-count { font-size: 12px; color: var(--accent); width: 24px; }
+  .clinic-banner { margin-top: 48px; animation: fadeUp 0.5s ease 0.4s both; }
+  .clinic-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(61,36,15,0.04); }
+  .clinic-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .clinic-icon { font-size: 28px; flex-shrink: 0; }
+  .clinic-name { font-size: 15px; font-weight: 700; color: var(--text); flex: 1; }
+  .clinic-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .clinic-arrow { font-size: 18px; color: var(--accent); font-weight: 700; }
+  .subscribe-banner { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+  .subscribe-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(61,36,15,0.04); flex: 1; min-width: 200px; }
+  .subscribe-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .sub-icon { font-size: 28px; flex-shrink: 0; }
+  .sub-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .sub-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .sub-arrow { font-size: 18px; color: var(--accent); font-weight: 700; margin-left: auto; }
+  footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; animation: fadeUp 0.5s ease 0.5s both; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .container { padding: 36px 18px 60px; } .summary-card, .news-card { padding: 20px 18px; } .pico-grid { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 6px; text-align: center; } .topic-name { width: 70px; font-size: 11px; } .subscribe-banner { flex-direction: column; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">🧪</div>
+    <div class="header-text">
+      <h1>GLP-1 Brain &middot; GLP-1 文獻日報</h1>
+      <div class="header-meta">
+        <span class="badge badge-date">📅 2026年6月28日</span>
+        <span class="badge badge-count">📊 60 篇文獻</span>
+        <span class="badge badge-source">Powered by PubMed + Zhipu AI</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="summary-card">
+    <h2>📋 今日文獻趨勢</h2>
+    <p class="summary-text">今日論文聚焦於新型多靶點藥物機轉（如五重激動劑）、替爾泊肽與杜拉魯肽在慢性腎病保護上的頭對頭比較、以及GLP-1藥物在真實世界中對睡眠呼吸中止症與癌症風險的長期影響，顯示該領域正從單一降糖向多重代謝保護擴展。</p>
+  </div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>⭐</span>今日精選 TOP Picks</div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#1</span>
+            <span class="emoji-icon">🧬</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>從雙重到五重激動：治療肥胖與第二型糖尿病的下一代藥理學</h3>
+          <p class="journal-source">Cardiovascular diabetology. Endocrinology reports &middot; From dual to quintuple agonism for next-generation pharmacology to treat obesity and type 2 diabetes: synergistic incretin and nuclear receptor signaling.</p>
+          <p>結合 GLP-1/GIP 共激動與 PPAR 全效激動的五重激動劑在肥胖小鼠模型中表現出比司美格魯肽更優的減重、抗肥胖及降糖效果，且無常見的 PPAR 激動劑副作用。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">肥胖小鼠模型</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">GLP-1-GIP-蘭尼法尼醇共軛物（五重激動劑）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">司美格魯肽、GLP-1-GIP 共激動劑或蘭尼法尼醇單獨使用</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">減少體重、脂肪量、食物攝取量、改善胰島素敏感性</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">第二型糖尿病</span><span class="tag">MASLD/MASH</span><span class="tag">新藥機轉</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42351310/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#2</span>
+            <span class="emoji-icon">🫀</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>替爾泊肽與杜拉魯肽對第二型糖尿病慢性腎病患者主要腎臟事件的比較</h3>
+          <p class="journal-source">The lancet. Diabetes & endocrinology &middot; A comparison of the effects of tirzepatide and dulaglutide on major kidney events in people with type 2 diabetes: pre-specified exploratory analyses of the SURPASS-CVOT trial.</p>
+          <p>SURPASS-CVOT 研究探索性分析顯示，替爾泊肽相比杜拉魯肽能更有效地預防第二型糖尿病患者的主要腎臟不良事件。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">合併動脈粥狀硬化性心血管疾病與慢性腎病的第二型糖尿病患者</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">每週注射替爾泊肽（最高 15 mg）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">每週注射杜拉魯肽（1.5 mg）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">主要腎臟事件發生時間（持續性巨量白蛋白尿、eGFR 下降 ≥50%、末期腎病或腎病死亡）</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">慢性腎病</span><span class="tag">心血管保護</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42114520/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#3</span>
+            <span class="emoji-icon">⚖️</span>
+            <span class="utility-mid">中实用性</span>
+          </div>
+          <h3>美國國家隊列中 GLP-1 肥胖藥物的社會人口特徵認知、使用與取得情況</h3>
+          <p class="journal-source">Annals of epidemiology &middot; GLP-1 Receptor Agonist Medications for Weight Loss: Sociodemographic Patterns of Awareness, Use, and Access in a U.S. National Cohort.</p>
+          <p>儘管 GLP-1 RA 藥物的高達 81.6% 認知度，但美國整體僅有 8.3% 的使用率，且收入較高、年齡較輕及黑人/西班牙裔族群使用率更高。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">美國成年人口（N=4,555）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">使用 GLP-1 受體促效劑</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">未使用者或使用 DPP-4 抑制劑者</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">藥物使用率、認知度及取得藥物的難易程度</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">真實世界數據</span><span class="tag">臨床指南</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42349695/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#4</span>
+            <span class="emoji-icon">📊</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>CKD 與超重/肥胖成年人中減重干預對腎臟、心血管代謝及人體測量學結果的影響：系統性評估與薈萃分析</h3>
+          <p class="journal-source">Diabetes, obesity & metabolism &middot; Effects of Weight-Loss Interventions on Kidney, Cardiometabolic and Anthropometric Outcomes in Adults With CKD and Overweight or Obesity: A Systematic Review and Meta-Analysis.</p>
+          <p>系統性評估確認了基於胰素類似物的減重療法能顯著降低 CKD 患者的尿白蛋白/肌酐比值，並改善相關代謝指標。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">慢性腎病合併超重或肥胖的成年人</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">包含胰素類似物在內的減重干預（生活型態、藥物、手術）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">安慰劑或其他干預措施</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">腎臟指標（eGFR、UACR）、心血管指標及體重</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">慢性腎病</span><span class="tag">肥胖與體重</span><span class="tag">第二型糖尿病</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42331714/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#5</span>
+            <span class="emoji-icon">😴</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>GLP-1 受體促效劑在阻塞性睡眠呼吸中止症中的應用：傾向性分數匹配的真實世界分析</h3>
+          <p class="journal-source">Respiratory medicine &middot; GLP-1 Receptor Agonists in Obstructive Sleep Apnea: A Propensity Score-Matched Real-World Analysis.</p>
+          <p>大型真實世界數據分析顯示，使用 GLP-1 RA 藥物的 OSA 患者發生缺血性中風、顱內出血、住院及全因死亡的風險顯著較低。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">阻塞性睡眠呼吸中止症患者</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">使用 GLP-1 受體促效劑</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">未使用 GLP-1 受體促效劑</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">中風、顱內出血、急診就診、住院及全因死亡率</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">睡眠呼吸中止症</span><span class="tag">心血管保護</span><span class="tag">肥胖與體重</span><span class="tag">真實世界數據</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42362122/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#6</span>
+            <span class="emoji-icon">🛡️</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>第二型糖尿病患者中 GLP-1 受體促效劑與胰臟膽管癌症風險的關聯：全國隊列研究</h3>
+          <p class="journal-source">Diabetes & metabolism &middot; Glucagon-like peptide-1 receptor agonists and risk of pancreaticobiliary cancers in patients with type 2 diabetes: a nationwide cohort study.</p>
+          <p>大型韓國全國隊列研究發現，使用 GLP-1 RA 的第二型糖尿病患者其胰臟癌與膽管癌的風險顯著低於使用 DPP-4 抑制劑的患者。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">第二型糖尿病患者（N=51,780）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">使用 GLP-1 受體促效劑</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">使用 DPP-4 抑制劑</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">胰臟癌、膽管癌、膽囊癌及其綜合發生率</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">癌症風險</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42349715/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#7</span>
+            <span class="emoji-icon">🏥</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>根擎腎功能分層的 GLP-1 受體促效劑心血管效益：納入 SOUL 試驗的更新薈萃分析</h3>
+          <p class="journal-source">Diabetes, obesity & metabolism &middot; Cardiovascular Efficacy of GLP-1 Receptor Agonists by Kidney Function: An Updated Meta-Analysis of Randomized Trials Including the SOUL Trial.</p>
+          <p>薈萃分析表明，GLP-1 RA 對腎功能正常及輕度至中度腎功能損害患者均有心血管保護作用，且在腎功能較差的患者中絕對效益更大。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">第二型糖尿病或肥胖/過重患者</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">GLP-1 受體促效劑</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">安慰劑</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">主要不良心血管事件（MACE）</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">慢性腎病</span><span class="tag">心血管保護</span><span class="tag">第二型糖尿病</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42348164/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#8</span>
+            <span class="emoji-icon">🦴</span>
+            <span class="utility-mid">中实用性</span>
+          </div>
+          <h3>司美格魯肽對骨重塑的影響：在健康大鼠及慢性腎病患者中的研究</h3>
+          <p class="journal-source">Bone &middot; Semaglutide, at a dose that produces modest weight loss, induces mild suppression of bone remodeling in healthy control rats and those with chronic kidney disease.</p>
+          <p>導致輕微減重劑量的司美格魯肽會輕微抑制骨骼形成，並降低骨重塑，雖然在 CKD 模型中表現不顯著，但仍需長期監測。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">健康大鼠及 CKD 大鼠</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">司美格魯肽（漸進式劑量）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">未治療組</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">骨結構、骨重塑率及機械性能</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">骨質疏鬆</span><span class="tag">副作用</span><span class="tag">第二型糖尿病</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42128321/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div></div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>📚</span>其他值得關注的文獻</div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧫</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>解碼腸道-脂肪-心臟軸：從分子通訊網絡到臨床轉譯策略</h3>
+          <p class="journal-source">International journal of molecular sciences</p>
+          <p>綜述文章探討了腸道微生物如何作為代謝器官遠端調節宿主健康，並提出 TMAO 抑制劑及新型益生菌等臨床轉譯策略。</p>
+          <div class="card-footer">
+            <span class="tag">心血管保護</span><span class="tag">肥胖與體重</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42353310/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🗣️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>患者在阻塞性睡眠呼吸中止症及替爾泊肽治療中的體驗：退出訪談研究</h3>
+          <p class="journal-source">The patient</p>
+          <p>退出訪談顯示，接受替爾泊肽治療的患者在 OSA 症狀改善、睡眠品質及治療滿意度上均優於安慰劑組。</p>
+          <div class="card-footer">
+            <span class="tag">睡眠呼吸中止症</span><span class="tag">肥胖與體重</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41793578/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💊</span>
+            <span class="utility-high utility-sm">高</span>
+          </div>
+          <h3>FDA 批准的減重藥物：以 GLP-1 激動劑為重點的系統性評估</h3>
+          <p class="journal-source">Disease-a-month : DM</p>
+          <p>系統性評估了包括司美格魯肽、替爾泊肽在內的減重藥物，詳述了其減重幅度、代謝指標改善及常見副作用。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">第二型糖尿病</span><span class="tag">副作用</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41991422/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧠</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>針對肥胖與憂鬱症的雙重管理：鎖定 GLP-1 受體路徑</h3>
+          <p class="journal-source">Drug discovery today</p>
+          <p>探討了 GLP-1 受體促效劑透過腸腦軸及抗發炎作用，在治療肥胖合併憂鬱症方面的潛在價值。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">憂鬱症</span><span class="tag">跨適應症</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42361966/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🏭</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>司美格魯肽重組生產的高產率工藝：利用 SNAC-標籤融合肽</h3>
+          <p class="journal-source">PloS one</p>
+          <p>開發了一種新的融合肽策略，提高了司美格魯肽中間體 P29 的表達量與純度，有助於降低生產成本。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">製藥工藝</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42361026/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💰</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>成本效益分析：替爾泊肽與司美格魯脂在美國肥胖/過重患者中的比較</h3>
+          <p class="journal-source">Journal of medical economics</p>
+          <p>使用 SURMOUNT-5 數據的模型顯示，替爾泊脂在減少併發症和延長 QALY 方面具有成本效益優勢。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">成本效益分析</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42012820/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">📖</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>替爾泊脂在代謝疾病中的臨床效益與安全性：糖尿病與肥胖之外</h3>
+          <p class="journal-source">Medicinal research reviews</p>
+          <p>綜述分析了替爾泊脂在心血管疾病、MASLD 及慢性腎病中的潛在益處，同時也強調了相關的潛在風險。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">慢性腎病</span><span class="tag">心血管保護</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41923370/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">👁️</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>司美格魯脂升劑量後的非典型球後視神經病變</h3>
+          <p class="journal-source">JCEM case reports</p>
+          <p>報告了一例司美格魯脂升劑量後出現非典型球後視神經病變的病例，強調了藥物升劑量時的監測必要性。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">副作用</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42220603/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🚀</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>肥胖藥物治療中的新機制及其對心血管疾病的影響：敘述性綜述</h3>
+          <p class="journal-source"></p>
+          <p>探討了除胰素類似物（NuSH）之外的新一代減重機制，如去甲腎上腺素受體拮抗、肌抑素抑制等。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">心血管保護</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42360622/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🦠</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>司美格魯脂治療下發現的乳突狀甲狀腺癌：病例報告與證據回顧</h3>
+          <p class="journal-source">Hormones (Athens, Greece)</p>
+          <p>報告了一例極少見的司美格魯脂治療期間發現的乳突狀甲狀腺癌病例，現有數據仍支持其安全性。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">癌症風險</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42350760/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">✅</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>從證據到實踐：識別慢性動脈粥狀硬化疾病中使用司美格魯脂的候選人</h3>
+          <p class="journal-source">International journal of cardiology</p>
+          <p>根據 SELECT 和 SOUL 試驗結果，分析發現約 54.3% 的臨床診斷冠心病患者實際上符合司美格魯脂的治療資格。</p>
+          <div class="card-footer">
+            <span class="tag">心血管保護</span><span class="tag">肥胖與體重</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42361988/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">❤️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>司美格魯脂對射血分數保留之心衰竭患者的臨床影響</h3>
+          <p class="journal-source">Journal of clinical medicine</p>
+          <p>回顧性研究顯示，在 HFpEF 合併 T2DM 患者中，口服司美格魯脂 3 個月顯著降低了 BNP 水平並改善了心臟重塑。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">心血管保護</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42355999/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🤝</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>GLP-1 受體促效劑與 SGLT-2 抑制劑聯合用藥在第二型糖尿病中的有效性：真實世界經驗</h3>
+          <p class="journal-source">Endocrine practice</p>
+          <p>真實世界數據顯示，聯合使用 GLP-1 RA 和 SGLT-2i 有助於顯著改善第二型糖尿病患者的糖化血紅蛋白控制。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">心血管保護</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42362054/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🍚</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>重組胰素類似物生產工藝的改進：針對司美格魯脂</h3>
+          <p class="journal-source">Diabetes</p>
+          <p>研究發現稀有糖 d-Allulose 可誘導腸道 GLP-1 釋放，透過迷走神經與胰島素協同作用改善血糖。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">代謝效應</span><span class="tag">功能性胃腸</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42062836/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧠</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>從 Satiety 到 Substance Use：GLP-1 飽食訊號與獎勵路徑中的神經機制</h3>
+          <p class="journal-source">Biological psychiatry</p>
+          <p>探討了 GLP-1 系統在調節飽足感及獎勵途徑中的神經機制，暗示其在成癮行為治療中的潛力。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">成癮行為</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42349741/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🦵</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>GLP-1 藥物是否能降低膝置換手術的風險？</h3>
+          <p class="journal-source">Regional anesthesia and pain medicine</p>
+          <p>初步研究顯示使用 GLP-1 激動劑與降低關節置換手術風險之間存在相關性。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">慢性疼痛</span><span class="tag">關節炎</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42336491/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🔬</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>GLP-1 藥物對中樞下丘腦室旁核神經元活動的影響</h3>
+          <p class="journal-source">Sheng li xue bao : [Acta physiologica Sinica]</p>
+          <p>實驗室研究揭示了 GLP-1 調節下丘腦神經元發放頻率的離子通道機制。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">食慾調控</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42358153/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">📈</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>替爾泊脂的早期體重反應與療效耐受性：SURMOUNT-1 與 2 的事後分析</h3>
+          <p class="journal-source"></p>
+          <p>事後分析顯示，早期有體重反應的患者在後續治療中獲得了更大的臨床效益，且胃腸道耐受性一致。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42348366/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🗣️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>阻塞性睡眠呼吸中止症患者的替爾泊脂治療體驗：退出訪談</h3>
+          <p class="journal-source">The patient</p>
+          <p>退出訪談顯示，接受替爾泊脂治療的患者在 OSA 症狀改善、睡眠品質及治療滿意度上均優於安慰劑組。</p>
+          <div class="card-footer">
+            <span class="tag">睡眠呼吸中止症</span><span class="tag">肥胖與體重</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41793578/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">👨‍⚕️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>一項一般診所對心血管代謝共病老年患者的干預研究</h3>
+          <p class="journal-source">PloS one</p>
+          <p>研究顯示，透過整體醫療管理，能顯著提高老年患者對包括 GLP-1 RA 在內的多種藥物的依從性。</p>
+          <div class="card-footer">
+            <span class="tag">臨床指南</span><span class="tag">心血管保護</span><span class="tag">第二型糖尿病</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42340964/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧓</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>司美格魯脂改善衰老相關肌少症及大動脈內皮細胞功能</h3>
+          <p class="journal-source">Free radical biology & medicine</p>
+          <p>研究發現司美格魯脂透過激活 SIRT1 路徑，改善了大動脈內皮細胞功能及與衰老相關的肌少症。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">心血管保護</span><span class="tag">免疫調節</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41951015/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🤰</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>女性生殖力與減重藥物：系統性評估與薈萃分析</h3>
+          <p class="journal-source">Clinical obesity</p>
+          <p>系統性評估發現，司美格魯脂與其他減重藥物對自然受孕率的影響存在爭議，需更多數據支持。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">孕期</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42307450/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🌸</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>胰素類似物抗肥胖藥物在多囊卵巢症候群的證據地圖</h3>
+          <p class="journal-source"></p>
+          <p>評估了 liraglutide、semaglutide 和 tirzepatide 在 PCOS 中的應用，指出當前證據仍有缺口。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">第二型糖尿病</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42106472/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">❤️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>司美格魯脂在預防心臟衰竭中的作用</h3>
+          <p class="journal-source">European heart journal</p>
+          <p>綜述探討了 CKD 患者中 '前心臟衰竭' 的流行病學及治療策略，指出胰素類似物有助於預防。</p>
+          <div class="card-footer">
+            <span class="tag">慢性腎病</span><span class="tag">心血管保護</span><span class="tag">第二型糖尿病</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41914187/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🩺</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>GLP-1 藥物在代謝疾病中的新治療策略</h3>
+          <p class="journal-source">Kidney international reports</p>
+          <p>綜述介紹了針對 CKD 及糖尿病的胰素類似物聯合療法、新血管擴張劑及抗纖維化藥物。</p>
+          <div class="card-footer">
+            <span class="tag">慢性腎病</span><span class="tag">第二型糖尿病</span><span class="tag">心血管保護</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42205183/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧬</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>老化與肥胖：代謝健康的老年科學框架</h3>
+          <p class="journal-source"></p>
+          <p>提出肥胖加速生物老化的框架，認為胰素類似物治療可能有助於延緩衰老標誌。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">長壽</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42144183/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🍎</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>甲硫胺酸補充的長壽飲食增加 GH、GLP-1 及 FGF21，並減少虛弱</h3>
+          <p class="journal-source">Cell metabolism</p>
+          <p>研究發現含有甲硫胺酸的長壽飲食可增加 GLP-1 水平，改善代謝標記並延長健康壽命。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">長壽</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42335894/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🦴</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>替爾泊脂透過抑制 TNF-α 調節來抑制骨吸收</h3>
+          <p class="journal-source">International journal of molecular sciences</p>
+          <p>研究揭示利拉魯肽透過抑制巨噬細胞中 TNF-α 的表達來防止發炎性骨破壞。</p>
+          <div class="card-footer">
+            <span class="tag">骨質疏鬆</span><span class="tag">第二型糖尿病</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42353338/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🏭</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>重組生產司美格魯脂主鏈 P29 中間體的高產率工藝：利用 SNAC-標籤融合肽</h3>
+          <p class="journal-source">PloS one</p>
+          <p>開發了新型融合肽策略，顯著提高了司美格魯脂中間體的生產效率。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">製藥工藝</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42361026/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💰</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>成本效益分析：替爾泊脂與司美格魯脂在美國肥胖/過重患者中的比較</h3>
+          <p class="journal-source">Journal of medical economics</p>
+          <p>使用 SURMOUNT-5 數據的模型顯示，替爾泊脂在減少併發症和延長 QALY 方面具有成本效益優勢。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">成本效益分析</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42012820/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">📖</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>替爾泊脂在代謝疾病中的臨床效益與安全性：糖尿病與肥胖之外</h3>
+          <p class="journal-source">Medicinal research reviews</p>
+          <p>綜述分析了替爾泊脂在心血管疾病、MASLD 及慢性腎病中的潛在益處，同時也強調了相關的潛在風險。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">慢性腎病</span><span class="tag">心血管保護</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41923370/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">👁️</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>司美格魯脂升劑量後的非典型球後視神經病變</h3>
+          <p class="journal-source">JCEM case reports</p>
+          <p>報告了一例司美格魯脂升劑量後出現非典型球後視神經病變的病例，強調了藥物升劑量時的監測必要性。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">副作用</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42220603/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🚀</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>肥胖藥物治療中的新機制及其對心血管疾病的影響：敘述性綜述</h3>
+          <p class="journal-source"></p>
+          <p>探討了除胰素類似物（NuSH）之外的新一代減重機制，如去甲腎上腺素受體拮抗、肌抑素抑制等。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">心血管保護</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42360622/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🦠</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>司美格魯脂治療下發現的乳突狀甲狀腺癌：病例報告與證據回顧</h3>
+          <p class="journal-source">Hormones (Athens, Greece)</p>
+          <p>報告了一例極少見的司美格魯脂治療期間發現的乳突狀甲狀腺癌病例，現有數據仍支持其安全性。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">癌症風險</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42350760/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">✅</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>從證據到實踐：識別慢性動脈粥狀硬化疾病中使用司美格魯脂的候選人</h3>
+          <p class="journal-source">International journal of cardiology</p>
+          <p>根據 SELECT 和 SOUL 試驗結果，分析發現約 54.3% 的臨床診斷冠心病患者實際上符合司美格魯脂的治療資格。</p>
+          <div class="card-footer">
+            <span class="tag">心血管保護</span><span class="tag">肥胖與體重</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42361988/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">❤️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>司美格魯脂對射血分數保留之心衰竭患者的臨床影響</h3>
+          <p class="journal-source">Journal of clinical medicine</p>
+          <p>回顧性研究顯示，在 HFpEF 合併 T2DM 患者中，口服司美格魯脂 3 個月顯著降低了 BNP 水平並改善了心臟重塑。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">心血管保護</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42355999/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🤝</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>GLP-1 受體促效劑與 SGLT-2 抑制劑聯合用藥在第二型糖尿病中的有效性：真實世界經驗</h3>
+          <p class="journal-source">Endocrine practice</p>
+          <p>真實世界數據顯示，聯合使用 GLP-1 RA 和 SGLT-2i 有助於顯著改善第二型糖尿病患者的糖化血紅蛋白控制。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">心血管保護</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42362054/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🍚</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>重組胰素類似物生產工藝的改進：針對司美格魯脂</h3>
+          <p class="journal-source">Diabetes</p>
+          <p>研究發現稀有糖 d-Allulose 可誘導腸道 GLP-1 釋放，透過迷走神經與胰島素協同作用改善血糖。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">代謝效應</span><span class="tag">功能性胃腸</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42062836/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧠</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>從 Satiety 到 Substance Use：GLP-1 飽食訊號與獎勵路徑中的神經機制</h3>
+          <p class="journal-source">Biological psychiatry</p>
+          <p>探討了 GLP-1 系統在調節飽足感及獎勵途徑中的神經機制，暗示其在成癮行為治療中的潛力。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">成癮行為</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42349741/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🦵</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>GLP-1 藥物是否能降低膝置換手術的風險？</h3>
+          <p class="journal-source">Regional anesthesia and pain medicine</p>
+          <p>初步研究顯示使用 GLP-1 激動劑與降低關節置換手術風險之間存在相關性。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">慢性疼痛</span><span class="tag">關節炎</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42336491/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🔬</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>GLP-1 藥物對中樞下丘腦室旁核神經元活動的影響</h3>
+          <p class="journal-source">Sheng li xue bao : [Acta physiologica Sinica]</p>
+          <p>實驗室研究揭示了 GLP-1 調節下丘腦神經元發放頻率的離子通道機制。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">食慾調控</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42358153/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">📈</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>替爾泊脂的早期體重反應與療效耐受性：SURMOUNT-1 與 2 的事後分析</h3>
+          <p class="journal-source"></p>
+          <p>事後分析顯示，早期有體重反應的患者在後續治療中獲得了更大的臨床效益，且胃腸道耐受性一致。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42348366/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🗣️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>阻塞性睡眠呼吸中止症患者的替爾泊脂治療體驗：退出訪談</h3>
+          <p class="journal-source">The patient</p>
+          <p>退出訪談顯示，接受替爾泊脂治療的患者在 OSA 症狀改善、睡眠品質及治療滿意度上均優於安慰劑組。</p>
+          <div class="card-footer">
+            <span class="tag">睡眠呼吸中止症</span><span class="tag">肥胖與體重</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41793578/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">👨‍⚕️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>一項一般診所對心血管代謝共病老年患者的干預研究</h3>
+          <p class="journal-source">PloS one</p>
+          <p>研究顯示，透過整體醫療管理，能顯著提高老年患者對包括 GLP-1 RA 在內的多種藥物的依從性。</p>
+          <div class="card-footer">
+            <span class="tag">臨床指南</span><span class="tag">心血管保護</span><span class="tag">第二型糖尿病</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42340964/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧓</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>司美格魯脂改善衰老相關肌少症及大動脈內皮細胞功能</h3>
+          <p class="journal-source">Free radical biology & medicine</p>
+          <p>研究發現司美格魯脂透過激活 SIRT1 路徑，改善了大動脈內皮細胞功能及與衰老相關的肌少症。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">心血管保護</span><span class="tag">免疫調節</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41951015/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🤰</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>女性生殖力與減重藥物：系統性評估與薈萃分析</h3>
+          <p class="journal-source">Clinical obesity</p>
+          <p>系統性評估發現，司美格魯脂與其他減重藥物對自然受孕率的影響存在爭議，需更多數據支持。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">孕期</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42307450/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🌸</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>胰素類似物抗肥胖藥物在多囊卵巢症候群的證據地圖</h3>
+          <p class="journal-source"></p>
+          <p>評估了 liraglutide、semaglutide 和 tirzepatide 在 PCOS 中的應用，指出當前證據仍有缺口。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">第二型糖尿病</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42106472/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">❤️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>司美格魯脂在預防心臟衰竭中的作用</h3>
+          <p class="journal-source">European heart journal</p>
+          <p>綜述探討了 CKD 患者中 '前心臟衰竭' 的流行病學及治療策略，指出胰素類似物有助於預防。</p>
+          <div class="card-footer">
+            <span class="tag">慢性腎病</span><span class="tag">心血管保護</span><span class="tag">第二型糖尿病</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41914187/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🩺</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>GLP-1 藥物在代謝疾病中的新治療策略</h3>
+          <p class="journal-source">Kidney international reports</p>
+          <p>綜述介紹了針對 CKD 及糖尿病的胰素類似物聯合療法、新血管擴張劑及抗纖維化藥物。</p>
+          <div class="card-footer">
+            <span class="tag">慢性腎病</span><span class="tag">第二型糖尿病</span><span class="tag">心血管保護</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42205183/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧬</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>老化與肥胖：代謝健康的老年科學框架</h3>
+          <p class="journal-source"></p>
+          <p>提出肥胖加速生物老化的框架，認為胰素類似物治療可能有助於延緩衰老標誌。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">長壽</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42144183/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🍎</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>甲硫胺酸補充的長壽飲食增加 GH、GLP-1 及 FGF21，並減少虛弱</h3>
+          <p class="journal-source">Cell metabolism</p>
+          <p>研究發現含有甲硫胺酸的長壽飲食可增加 GLP-1 水平，改善代謝標記並延長健康壽命。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">長壽</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42335894/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🦴</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>替爾泊脂透過抑制 TNF-α 調節來抑制骨吸收</h3>
+          <p class="journal-source">International journal of molecular sciences</p>
+          <p>研究揭示利拉魯肽透過抑制巨噬細胞中 TNF-α 的表達來防止發炎性骨破壞。</p>
+          <div class="card-footer">
+            <span class="tag">骨質疏鬆</span><span class="tag">第二型糖尿病</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42353338/" target="_blank">PubMed →</a>
+          </div>
+        </div></div>
+
+  <div class='topic-section section'><div class='section-title'><span class='section-icon'>📊</span>主題分佈</div>
+            <div class="topic-row">
+              <span class="topic-name">肥胖與體重</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:100%"></div></div>
+              <span class="topic-count">6</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">第二型糖尿病</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:100%"></div></div>
+              <span class="topic-count">6</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">慢性腎病</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:50%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">心血管保護</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:66%"></div></div>
+              <span class="topic-count">4</span>
+            </div></div>
+
+  <div class='keywords-section section'><div class='section-title'><span class='section-icon'>🏷️</span>關鍵字</div><div class='keywords'><span class="keyword">GLP-1</span><span class="keyword">Tirzepatide</span><span class="keyword">Semaglutide</span><span class="keyword">Kidney Disease</span><span class="keyword">Cardiovascular</span><span class="keyword">Obesity</span><span class="keyword">Diabetes</span><span class="keyword">Cost-effectiveness</span><span class="keyword">Meta-analysis</span></div></div>
+
+  <div class="clinic-banner">
+    <a href="https://www.leepsyclinic.com/" class="clinic-link" target="_blank">
+      <span class="clinic-icon">🏥</span>
+      <div>
+        <div class="clinic-name">李政洋身心診所首頁</div>
+        <div class="clinic-desc">www.leepsyclinic.com</div>
+      </div>
+      <span class="clinic-arrow">→</span>
+    </a>
+    <div class="subscribe-banner">
+      <a href="https://blog.leepsyclinic.com/" class="subscribe-link" target="_blank">
+        <span class="sub-icon">📬</span>
+        <div>
+          <div class="sub-name">訂閱電子報</div>
+          <div class="sub-desc">blog.leepsyclinic.com</div>
+        </div>
+        <span class="sub-arrow">→</span>
+      </a>
+      <a href="https://buymeacoffee.com/CYlee" class="subscribe-link" target="_blank">
+        <span class="sub-icon">☕</span>
+        <div>
+          <div class="sub-name">Buy me a coffee</div>
+          <div class="sub-desc">buymeacoffee.com/CYlee</div>
+        </div>
+        <span class="sub-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <span>資料來源：PubMed &middot; 分析模型：glm-5-turbo</span>
+    <span><a href="https://github.com/u8901006/GLP1-brain">GitHub</a></span>
+  </footer>
+</div>
+</body>
+</html>
