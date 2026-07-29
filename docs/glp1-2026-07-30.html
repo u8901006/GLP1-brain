@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GLP-1 Brain &middot; GLP-1 文獻日報 &middot; 2026年7月30日</title>
+<meta name="description" content="2026年7月30日 GLP-1 受體促效劂文獻日報，由 AI 自動彙整 PubMed 最新論文"/>
+<style>
+  :root { --bg: #f6f1e8; --surface: #fffaf2; --line: #d8c5ab; --text: #2b2118; --muted: #766453; --accent: #8c4f2b; --accent-soft: #ead2bf; --card-bg: color-mix(in srgb, var(--surface) 92%, white); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: radial-gradient(circle at top, #fff6ea 0, var(--bg) 55%, #ead8c6 100%); color: var(--text); font-family: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; overflow-x: hidden; }
+  .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; animation: fadeDown 0.6s ease both; }
+  .logo { width: 48px; height: 48px; border-radius: 14px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 20px rgba(140,79,43,0.25); }
+  .header-text h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .header-meta { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; align-items: center; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; letter-spacing: 0.3px; }
+  .badge-date { background: var(--accent-soft); border: 1px solid var(--line); color: var(--accent); }
+  .badge-count { background: rgba(140,79,43,0.06); border: 1px solid var(--line); color: var(--muted); }
+  .badge-source { background: transparent; color: var(--muted); font-size: 11px; padding: 0 4px; }
+  .summary-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 28px 32px; margin-bottom: 32px; box-shadow: 0 20px 60px rgba(61,36,15,0.06); animation: fadeUp 0.5s ease 0.1s both; }
+  .summary-card h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent); margin-bottom: 16px; }
+  .summary-text { font-size: 15px; line-height: 1.8; color: var(--text); }
+  .section { margin-bottom: 36px; animation: fadeUp 0.5s ease both; }
+  .section-title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .section-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: var(--accent-soft); }
+  .news-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 22px 26px; margin-bottom: 12px; box-shadow: 0 8px 30px rgba(61,36,15,0.04); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+  .news-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .news-card.featured { border-left: 3px solid var(--accent); }
+  .news-card.featured:hover { border-color: var(--accent); }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .rank-badge { background: var(--accent); color: #fff7f0; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 6px; }
+  .emoji-icon { font-size: 18px; }
+  .card-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .emoji-sm { font-size: 14px; }
+  .news-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+  .journal-source { font-size: 12px; color: var(--accent); margin-bottom: 8px; opacity: 0.8; }
+  .news-card p { font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+  .card-footer { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag { padding: 2px 9px; background: var(--accent-soft); border-radius: 999px; font-size: 11px; color: var(--accent); }
+  .news-card a { font-size: 12px; color: var(--accent); text-decoration: none; opacity: 0.7; margin-left: auto; }
+  .news-card a:hover { opacity: 1; }
+  .utility-high { color: #5a7a3a; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(90,122,58,0.1); border-radius: 4px; }
+  .utility-mid { color: #9f7a2e; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(159,122,46,0.1); border-radius: 4px; }
+  .utility-low { color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(118,100,83,0.08); border-radius: 4px; }
+  .utility-sm { font-size: 10px; }
+  .pico-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; padding: 12px; background: rgba(255,253,249,0.8); border-radius: 14px; border: 1px solid var(--line); }
+  .pico-item { display: flex; gap: 8px; align-items: baseline; }
+  .pico-label { font-size: 10px; font-weight: 700; color: #fff7f0; background: var(--accent); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
+  .pico-text { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .keywords-section { margin-bottom: 36px; }
+  .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .keyword { padding: 5px 14px; background: var(--accent-soft); border: 1px solid var(--line); border-radius: 20px; font-size: 12px; color: var(--accent); cursor: default; transition: background 0.2s; }
+  .keyword:hover { background: rgba(140,79,43,0.18); }
+  .topic-section { margin-bottom: 36px; }
+  .topic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .topic-name { font-size: 13px; color: var(--muted); width: 100px; flex-shrink: 0; text-align: right; }
+  .topic-bar-bg { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .topic-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #c47a4a); border-radius: 4px; transition: width 0.6s ease; }
+  .topic-count { font-size: 12px; color: var(--accent); width: 24px; }
+  .clinic-banner { margin-top: 48px; animation: fadeUp 0.5s ease 0.4s both; }
+  .clinic-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(61,36,15,0.04); }
+  .clinic-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .clinic-icon { font-size: 28px; flex-shrink: 0; }
+  .clinic-name { font-size: 15px; font-weight: 700; color: var(--text); flex: 1; }
+  .clinic-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .clinic-arrow { font-size: 18px; color: var(--accent); font-weight: 700; }
+  .subscribe-banner { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+  .subscribe-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(61,36,15,0.04); flex: 1; min-width: 200px; }
+  .subscribe-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .sub-icon { font-size: 28px; flex-shrink: 0; }
+  .sub-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .sub-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .sub-arrow { font-size: 18px; color: var(--accent); font-weight: 700; margin-left: auto; }
+  footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; animation: fadeUp 0.5s ease 0.5s both; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .container { padding: 36px 18px 60px; } .summary-card, .news-card { padding: 20px 18px; } .pico-grid { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 6px; text-align: center; } .topic-name { width: 70px; font-size: 11px; } .subscribe-banner { flex-direction: column; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">🧪</div>
+    <div class="header-text">
+      <h1>GLP-1 Brain &middot; GLP-1 文獻日報</h1>
+      <div class="header-meta">
+        <span class="badge badge-date">📅 2026年7月30日</span>
+        <span class="badge badge-count">📊 15 篇文獻</span>
+        <span class="badge badge-source">Powered by PubMed + NVIDIA Nemotron</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="summary-card">
+    <h2>📋 今日文獻趨勢</h2>
+    <p class="summary-text">今日GLP-1受體促效劑研究聚焦於心腎共保護、真實世界使用安全性及神經精神副作用，顯示該類藥物正從單一降糖藥向代謝多靶點治療轉型，並凸顯個體化用藥與長期安全監測的重要性。</p>
+  </div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>⭐</span>今日精選 TOP Picks</div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#1</span>
+            <span class="emoji-icon">💧</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>GLP-1受體促效劑與SGLT-2抑制劑在糖尿病腎病中的比較：GLP-1RA在降低尿蛋白方面更優</h3>
+          <p class="journal-source">Saudi medical journal &middot; GLP-1 Receptor Agonists and SGLT-2 Inhibitors in Diabetic Nephropathy:</p>
+          <p>在2型糖尿病早期腎病患者中，GLP-1受體促效劑對尿蛋白/ creatinine 比值的改善優於SGLT-2抑制劑，顯示其在早期腎保護方面的潛在優勢。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">115名2型糖尿病患者，eGFR ≥60 mL/min/1.73m²，未接受腎대체療法</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">GLP-1受體促效劑治療超過1年</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">SGLT-2抑制劑治療超過1年</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">GLP-1RA組尿蛋白/creatinine比值下降13.35 mg/g，而SGLT-2i組增加49.86 mg/g；兩組血糖改善類似</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">慢性腎病</span><span class="tag">真實世界數據</span><span class="tag">腎保護</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42445750/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#2</span>
+            <span class="emoji-icon">🍷</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>口服司美格鲁肽治療酒精使用障礙：減少重飲日與飲酒量，但未顯著降低實驗室測量的酒精渴求</h3>
+          <p class="journal-source">The American journal of psychiatry &middot; Oral Semaglutide for Alcohol Use Disorder: A Randomized Clinical Trial.</p>
+          <p>口服司美格鲁肽雖未顯著降低實驗室誘發的酒精渴求，但顯著減少重飲日數、每飲酒日飲酒量、自然istic渴求及大麻使用，顯示其在行為層面的實用療效。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">50名中度至重度酒精使用障礙成人</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">口服司美格鲁肽（3 mg/日 前4週 → 7 mg/日 次4週）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">安慰劑</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">重飲日顯著減少（b=-0.580），每飲酒日飲酒量減少（b=-1.177）、自然istic酒精渴求減少（b=-2.195）、大麻使用日減少（b=-1.434）</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">酒癮</span><span class="tag">成癮行為</span><span class="tag">隨機對照試驗</span><span class="tag">代謝效應</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42522065/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#3</span>
+            <span class="emoji-icon">😔</span>
+            <span class="utility-mid">中实用性</span>
+          </div>
+          <h3>高劑量替西帕肽伴隨快感缺失樣症狀：三例病例系列顯示劑量減量可逆轉神經精神副作用</h3>
+          <p class="journal-source">Obesity pillars &middot; Resolution of anhedonia-like symptoms in patients treated for obesity with tirzepatide: A three-case series.</p>
+          <p>三位接受高劑量替西帕肽(15 mg/週)治療的肥胖患者出現情感鈍化與動機降低，減量至10 mg/週後症狀顯著改善，提醒臨床師關注高劑量GLP-1RA的神經精神風險。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">3名肥胖女性患者，接受替西帕肽15 mg·week⁻¹治療，曾有或無情緒障礙史</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">高劑量替西帕肽治療後出現快感缺失樣症狀</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">減量至10 mg·week⁻¹或以下，必要時加用布托檸平</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">兩患者單靠減量改善動機與愉悅感；一患者需加用布托檸平；重新加量導致症狀復發，再次減量後恢復</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">憂鬱症</span><span class="tag">副作用</span><span class="tag">案例報告</span><span class="tag">神經精神效應</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42518361/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#4</span>
+            <span class="emoji-icon">🛡️</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>GLP-1受體促效劑在糖尿病患者中與皮膚癌風險無關：標的試驗複製顯示黑色素瘤風險無增，非黑色素瘤皮膚癌邊際增加未經校驗後消失</h3>
+          <p class="journal-source">Diabetes, obesity & metabolism &middot; GLP-1 Receptor Agonists and Risk of Skin Cancer in Adults With Type 2 Diabetes: A Target Trial Emulation.</p>
+          <p>大規模真實世界數據顯示GLP-1RA使用與黑色素瘤風險無關，與SGLT2i比較時非黑色素瘤皮膚癌風險有邊際增加(HR=1.06)，但在陰性對照校驗後該關聯消失，提示可能為混雜因素。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">2型糖尿病成人， initiators of GLP-1RA, SGLT2i, or DPP4i (2014–2025)</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">GLP-1RA使用</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">SGLT2i 或 DPP4i 使用</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">GLP-1RA vs SGLT2i：黑色素瘤 HR=1.04 (0.93–1.17)，非黑色素瘤皮膚癌 HR=1.06 (1.00–1.11)；經NCO校正後非黑色素瘤皮膚癌關聯消失</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">真實世界數據</span><span class="tag">癌症風險</span><span class="tag">安全性</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42521622/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#5</span>
+            <span class="emoji-icon">💼</span>
+            <span class="utility-mid">中实用性</span>
+          </div>
+          <h3>美國受僱成人使用替西帕肽治療肥胖：雖工作表現受損，但多數認為僱主應提供肥胖藥物保險，並願因此變更工作</h3>
+          <p class="journal-source">Obesity pillars &middot; Employee perceptions and experiences with tirzepatide treatment for obesity or overweight in the US: Insights from the PERCEPTIONS Survey.</p>
+          <p>超過半數受雇用alternative受試者認為僱主應提供肥胖藥物保險，81.7%相信此將提升工作滿意度，52.3%願因藥物保險而考慮換工作，顯示職場層面對肥胖治療的迫切需求。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">518名美國全職受雇成人，BMI≥30或(BMI≥27+併發症)，啟用替西帕肽治療肥胖</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">替西帕肽治療 + 僱主提供的健康保險覆蓋狀態</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">有 vs 沒有僱主提供肥胖藥物保險</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">80.9%有僱主健康保險，其中僅55.9%報告覆蓋肥胖藥物；96.5%認為應提供；81.7%認為可提升工作滿意度；52.3%願因此換工作</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">真實世界數據</span><span class="tag">功能性胃腸</span><span class="tag">憂鬱症</span><span class="tag">保險與可及性</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42518363/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div></div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>📚</span>其他值得關注的文獻</div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">📘</span>
+            <span class="utility-high utility-sm">高</span>
+          </div>
+          <h3>慢性腎病進展抑制：KDIGO 2024指南強調GLP-1RA在心腎保護中的角色</h3>
+          <p class="journal-source">Innere Medizin (Heidelberg, Germany)</p>
+          <p>KDIGO 2024指南更新建議GLP-1RA用於心腎保護，強調與SGLT2i及非類固醇MRA合併使用可延長心腎事件-free生存3-5年。</p>
+          <div class="card-footer">
+            <span class="tag">慢性腎病</span><span class="tag">心血管保護</span><span class="tag">臨床指南</span><span class="tag">併用療法</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42397586/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧬</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>GLP-1受體促效劑在代謝性肝病與肝細胞癌預防中的潛力：改善脂肪肝但需更多前瞻證據</h3>
+          <p class="journal-source">Internal and emergency medicine</p>
+          <p>GLP-1RA在非 cirrhotic MASLD患者中改善脂肪肝與代謝功能，實世界數據顯示可能降低肝去代償與HCC風險，但機制尚需闡明。</p>
+          <div class="card-footer">
+            <span class="tag">MASLD/MASH</span><span class="tag">癌症風險</span><span class="tag">第二型糖尿病</span><span class="tag">代謝效應</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42521944/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">⚖️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>GLP-1受體促效劑在初級保健中的準備與公平性：警告可能形成兩層肥胖治療格局</h3>
+          <p class="journal-source">Therapeutic advances in endocrinology and metabolism</p>
+          <p> malgré 顯著療效，GLP-1RA在初級保健中的使用受限於培訓不足、成本高、保險碎片化及體重偏見，少數族群與低收入群體獲取困難，リスク健康不平等。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">健康公平</span><span class="tag">初級保健</span><span class="tag">真實世界數據</span><span class="tag">併用療法</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42523902/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">⚖️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>半劑量替西帕肽(2.5 mg)在非糖尿病日本成人肥胖治療中的效果非凡次於5 mg：低劑量耐受性更好，適合真實世界應用</h3>
+          <p class="journal-source">Diabetes, obesity & metabolism</p>
+          <p>在非糖尿病日本成人中，2.5 mg與5 mg替西帕肽在6個月內減重百分比相近（-15.3% vs -16.1%），但5 mg組胃腸副作用更多，支持低劑量策略。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">第二型糖尿病</span><span class="tag">副作用</span><span class="tag">真實世界數據</span><span class="tag">劑量最佳化</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42521631/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🦴</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>司美格鲁肽在健康對照與慢性腎病大鼠中誘導輕度骨重塑抑制：於輕度減重劑量下影響骨形成率但未改變骨密度</h3>
+          <p class="journal-source">Bone</p>
+          <p>司美格鲁肽在輕度減重劑量下降低骨形成率約20%，但對 trabecular骨量或 mechanical properties 無顯著負面影響，提示短期使用風險可控。</p>
+          <div class="card-footer">
+            <span class="tag">骨質疏鬆</span><span class="tag">慢性腎病</span><span class="tag">副作用</span><span class="tag">動物實驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42128321/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🔬</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>GIP在骨骼肌微血管中拮抗胰島素與GLP-1的營養分配作用：揭示雙重腸促素藥物的組織特異性調控機制</h3>
+          <p class="journal-source">Diabetes</p>
+          <p>GIP單獨不增加肌肉微血管灌流，反而拮抗胰島素與GLP-1介導的微血管募集，提示其在營養分配中的調節角色，可能影響雙重激動劑的代謝效應。</p>
+          <div class="card-footer">
+            <span class="tag">代謝效應</span><span class="tag">機制研究</span><span class="tag">動物實驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42496592/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">❓</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>心血管與腎病中的GIP：從生理到藥理——雙重腸促素藥物 tirzepatide 的心腎保護證據仍需闡明其獨立貢獻</h3>
+          <p class="journal-source">Diabetes, obesity & metabolism</p>
+          <p>雖然tirzepatide顯示心腎獲益，但GIP受體激動在其中的具體、獨立貢獻仍有爭議，需更多針對性試驗闡明其角色。</p>
+          <div class="card-footer">
+            <span class="tag">心血管保護</span><span class="tag">慢性腎病</span><span class="tag">第二型糖尿病</span><span class="tag">機制研究</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42209267/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">❓</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>心血管與腎病中的GIP：從生理到藥理——雙重腸促素藥物 tirzepatide 的心腎保護證據仍需闡明其獨立貢獻</h3>
+          <p class="journal-source">Diabetes, obesity & metabolism</p>
+          <p>雖然tirzepatide顯示心腎獲益，但GIP受體激動在其中的具體、獨立貢獻仍有爭議，需更多針對性試驗闡明其角色。</p>
+          <div class="card-footer">
+            <span class="tag">心血管保護</span><span class="tag">慢性腎病</span><span class="tag">第二型糖尿病</span><span class="tag">機制研究</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42209267/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">❓</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>心血管與腎病中的GIP：從生理到藥理——雙重腸促素藥物 tirzepatide 的心腎保護證據仍需闡明其獨立貢獻</h3>
+          <p class="journal-source">Diabetes, obesity & metabolism</p>
+          <p>雖然tirzepatide顯示心腎獲益，但GIP受體激動在其中的具體、獨立貢獻仍有爭議，需更多針對性試驗闡明其角色。</p>
+          <div class="card-footer">
+            <span class="tag">心血管保護</span><span class="tag">慢性腎病</span><span class="tag">第二型糖尿病</span><span class="tag">機制研究</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42209267/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🔬</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>葡萄糖依赖性胰岛素释放多肽(GIP)急性减弱胰岛素和GLP-1诱导的骨骼肌微血管灌注</h3>
+          <p class="journal-source">Diabetes</p>
+          <p>GIP单独不增加肌肉微血管灌注，反而拮抗胰岛素和GLP-1介导的微血管募集，提示其在营养分配中的调节角色，可能影响双重激动药的代谢效应。</p>
+          <div class="card-footer">
+            <span class="tag">代谢效应</span><span class="tag">机制研究</span><span class="tag">动物实验</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42496592/" target="_blank">PubMed →</a>
+          </div>
+        </div></div>
+
+  <div class='topic-section section'><div class='section-title'><span class='section-icon'>📊</span>主題分佈</div>
+            <div class="topic-row">
+              <span class="topic-name">肥胖與體重</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:100%"></div></div>
+              <span class="topic-count">6</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">第二型糖尿病</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:83%"></div></div>
+              <span class="topic-count">5</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">心血管保護</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:66%"></div></div>
+              <span class="topic-count">4</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">慢性腎病</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:66%"></div></div>
+              <span class="topic-count">4</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">真實世界數據</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:66%"></div></div>
+              <span class="topic-count">4</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">副作用</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:50%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">代謝效應</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:50%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">癌症風險</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:33%"></div></div>
+              <span class="topic-count">2</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">憂鬱症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:33%"></div></div>
+              <span class="topic-count">2</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">酒癮</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:16%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">骨質疏鬆</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:16%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">MASLD/MASH</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:16%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">健康公平</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:16%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">臨床指南</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:16%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">機制研究</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:50%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">劑量最佳化</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:16%"></div></div>
+              <span class="topic-count">1</span>
+            </div></div>
+
+  <div class='keywords-section section'><div class='section-title'><span class='section-icon'>🏷️</span>關鍵字</div><div class='keywords'><span class="keyword">GLP-1受體促效劑</span><span class="keyword">腎保護</span><span class="keyword">酒癮</span><span class="keyword">神經精神副作用</span><span class="keyword">真實世界數據</span><span class="keyword">劑量最佳化</span><span class="keyword">心血管保護</span><span class="keyword">肥胖與體重</span><span class="keyword">第二型糖尿病</span></div></div>
+
+  <div class="clinic-banner">
+    <a href="https://www.leepsyclinic.com/" class="clinic-link" target="_blank">
+      <span class="clinic-icon">🏥</span>
+      <div>
+        <div class="clinic-name">李政洋身心診所首頁</div>
+        <div class="clinic-desc">www.leepsyclinic.com</div>
+      </div>
+      <span class="clinic-arrow">→</span>
+    </a>
+    <div class="subscribe-banner">
+      <a href="https://blog.leepsyclinic.com/" class="subscribe-link" target="_blank">
+        <span class="sub-icon">📬</span>
+        <div>
+          <div class="sub-name">訂閱電子報</div>
+          <div class="sub-desc">blog.leepsyclinic.com</div>
+        </div>
+        <span class="sub-arrow">→</span>
+      </a>
+      <a href="https://buymeacoffee.com/CYlee" class="subscribe-link" target="_blank">
+        <span class="sub-icon">☕</span>
+        <div>
+          <div class="sub-name">Buy me a coffee</div>
+          <div class="sub-desc">buymeacoffee.com/CYlee</div>
+        </div>
+        <span class="sub-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <span>資料來源：PubMed &middot; 分析模型：nvidia/nemotron-3-super-120b-a12b</span>
+    <span><a href="https://github.com/u8901006/GLP1-brain">GitHub</a></span>
+  </footer>
+</div>
+</body>
+</html>
