@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GLP-1 Brain &middot; GLP-1 文獻日報 &middot; 2026年8月1日</title>
+<meta name="description" content="2026年8月1日 GLP-1 受體促效劂文獻日報，由 AI 自動彙整 PubMed 最新論文"/>
+<style>
+  :root { --bg: #f6f1e8; --surface: #fffaf2; --line: #d8c5ab; --text: #2b2118; --muted: #766453; --accent: #8c4f2b; --accent-soft: #ead2bf; --card-bg: color-mix(in srgb, var(--surface) 92%, white); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: radial-gradient(circle at top, #fff6ea 0, var(--bg) 55%, #ead8c6 100%); color: var(--text); font-family: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; overflow-x: hidden; }
+  .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; animation: fadeDown 0.6s ease both; }
+  .logo { width: 48px; height: 48px; border-radius: 14px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 20px rgba(140,79,43,0.25); }
+  .header-text h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .header-meta { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; align-items: center; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; letter-spacing: 0.3px; }
+  .badge-date { background: var(--accent-soft); border: 1px solid var(--line); color: var(--accent); }
+  .badge-count { background: rgba(140,79,43,0.06); border: 1px solid var(--line); color: var(--muted); }
+  .badge-source { background: transparent; color: var(--muted); font-size: 11px; padding: 0 4px; }
+  .summary-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 28px 32px; margin-bottom: 32px; box-shadow: 0 20px 60px rgba(61,36,15,0.06); animation: fadeUp 0.5s ease 0.1s both; }
+  .summary-card h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent); margin-bottom: 16px; }
+  .summary-text { font-size: 15px; line-height: 1.8; color: var(--text); }
+  .section { margin-bottom: 36px; animation: fadeUp 0.5s ease both; }
+  .section-title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .section-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: var(--accent-soft); }
+  .news-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 22px 26px; margin-bottom: 12px; box-shadow: 0 8px 30px rgba(61,36,15,0.04); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+  .news-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .news-card.featured { border-left: 3px solid var(--accent); }
+  .news-card.featured:hover { border-color: var(--accent); }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .rank-badge { background: var(--accent); color: #fff7f0; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 6px; }
+  .emoji-icon { font-size: 18px; }
+  .card-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .emoji-sm { font-size: 14px; }
+  .news-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+  .journal-source { font-size: 12px; color: var(--accent); margin-bottom: 8px; opacity: 0.8; }
+  .news-card p { font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+  .card-footer { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag { padding: 2px 9px; background: var(--accent-soft); border-radius: 999px; font-size: 11px; color: var(--accent); }
+  .news-card a { font-size: 12px; color: var(--accent); text-decoration: none; opacity: 0.7; margin-left: auto; }
+  .news-card a:hover { opacity: 1; }
+  .utility-high { color: #5a7a3a; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(90,122,58,0.1); border-radius: 4px; }
+  .utility-mid { color: #9f7a2e; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(159,122,46,0.1); border-radius: 4px; }
+  .utility-low { color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(118,100,83,0.08); border-radius: 4px; }
+  .utility-sm { font-size: 10px; }
+  .pico-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; padding: 12px; background: rgba(255,253,249,0.8); border-radius: 14px; border: 1px solid var(--line); }
+  .pico-item { display: flex; gap: 8px; align-items: baseline; }
+  .pico-label { font-size: 10px; font-weight: 700; color: #fff7f0; background: var(--accent); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
+  .pico-text { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .keywords-section { margin-bottom: 36px; }
+  .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .keyword { padding: 5px 14px; background: var(--accent-soft); border: 1px solid var(--line); border-radius: 20px; font-size: 12px; color: var(--accent); cursor: default; transition: background 0.2s; }
+  .keyword:hover { background: rgba(140,79,43,0.18); }
+  .topic-section { margin-bottom: 36px; }
+  .topic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .topic-name { font-size: 13px; color: var(--muted); width: 100px; flex-shrink: 0; text-align: right; }
+  .topic-bar-bg { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .topic-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #c47a4a); border-radius: 4px; transition: width 0.6s ease; }
+  .topic-count { font-size: 12px; color: var(--accent); width: 24px; }
+  .clinic-banner { margin-top: 48px; animation: fadeUp 0.5s ease 0.4s both; }
+  .clinic-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(61,36,15,0.04); }
+  .clinic-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .clinic-icon { font-size: 28px; flex-shrink: 0; }
+  .clinic-name { font-size: 15px; font-weight: 700; color: var(--text); flex: 1; }
+  .clinic-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .clinic-arrow { font-size: 18px; color: var(--accent); font-weight: 700; }
+  .subscribe-banner { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+  .subscribe-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(61,36,15,0.04); flex: 1; min-width: 200px; }
+  .subscribe-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .sub-icon { font-size: 28px; flex-shrink: 0; }
+  .sub-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .sub-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .sub-arrow { font-size: 18px; color: var(--accent); font-weight: 700; margin-left: auto; }
+  footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; animation: fadeUp 0.5s ease 0.5s both; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .container { padding: 36px 18px 60px; } .summary-card, .news-card { padding: 20px 18px; } .pico-grid { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 6px; text-align: center; } .topic-name { width: 70px; font-size: 11px; } .subscribe-banner { flex-direction: column; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">🧪</div>
+    <div class="header-text">
+      <h1>GLP-1 Brain &middot; GLP-1 文獻日報</h1>
+      <div class="header-meta">
+        <span class="badge badge-date">📅 2026年8月1日</span>
+        <span class="badge badge-count">📊 30 篇文獻</span>
+        <span class="badge badge-source">Powered by PubMed + NVIDIA Nemotron</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="summary-card">
+    <h2>📋 今日文獻趨勢</h2>
+    <p class="summary-text">今日論文聚焦於 GLP-1 受體促效劑的心血管、腎臟、肥胖及睡眠呼吸中止症等多領域臨床效益，尤其 tirzepatide 與 orforglipron 在代謝疾病併發症中的顯著改善潛力備受關注，顯示其從血糖控制向全身心代謝保護轉型的趨勢。</p>
+  </div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>⭐</span>今日精選 TOP Picks</div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#1</span>
+            <span class="emoji-icon">❤️</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>Beyond glycemic control: clinical cardiovascular effects of tirzepatide-a narrative review.</h3>
+          <p class="journal-source">Therapeutic advances in endocrinology and metabolism &middot; Beyond glycemic control: clinical cardiovascular effects of tirzepatide-a narrative review.</p>
+          <p> tirzepatide 作為首款雙重 GIP/GLP-1 受體促效劑，不僅顯著改善血糖與體重，更透過多重機制降低心血管風險因子，並顯示改善心衰與內皮功能的潛力，是目前最具轉化價值的心代謝藥物。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">2型糖尿病與肥胖患者</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">tirzepatide 治療</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">安慰劑或標準療療</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">血糖控制、體重減少、收縮/舒張血壓下降、血脂改善、內皮功能提升、炎症生物標誌物標誌物下降、心衰症狀改善</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">心血管保護</span><span class="tag">第二型糖尿病</span><span class="tag">肥胖與體重</span><span class="tag">代謝效應</span><span class="tag">真實世界數據</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42534427/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#2</span>
+            <span class="emoji-icon">😴</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>Orforglipron for the treatment of moderate-to-severe obstructive sleep apnea in adults with obesity or overweight: Study design and baseline characteristics of ATTAIN-OSA, a phase 3 trial.</h3>
+          <p class="journal-source">Contemporary clinical trials communications &middot; Orforglipron for the treatment of moderate-to-severe obstructive sleep apnea in adults with obesity or overweight: Study design and baseline characteristics of ATTAIN-OSA, a phase 3 trial.</p>
+          <p>首次評估口服 GLP-1 受體促效劑 orforglipron 在肥胖伴中至重度阻塞性睡眠呼吸中止症患者中的療效，若成功將提供非注射、便利的替代方案，解決 PAP 依從性低的問題。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">肥胖或超重伴中至重度 OSA 成人</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">once-daily oral orforglipron (12, 24, 或 36 mg)</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">安慰劑</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">Week 52 時 AHI 變化、睡眠相關 hypoxic burden、患者報告結果、hs-CRP、體重變化</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">睡眠呼吸中止症</span><span class="tag">肥胖與體重</span><span class="tag">試驗</span><span class="tag">代謝效應</span><span class="tag">食慾調控</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42383207/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#3</span>
+            <span class="emoji-icon">💊</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>Cost-effectiveness of tirzepatide versus semaglutide for patients with obesity or overweight in the US: evidence from the SURMOUNT-5 head-to-head phase-3 trial.</h3>
+          <p class="journal-source">Journal of medical economics &middot; Cost-effectiveness of tirzepatide versus semaglutide for patients with obesity or overweight in the US: evidence from the SURMOUNT-5 head-to-head phase-3 trial.</p>
+          <p>基於頭對頭第 III 期 SURMOUNT-5 試驗數據的模型顯示，tirzepatide 在美國社會視角下比 semaglutide 更具成本效益，每位患者可節省 $41,688 並獲得額外 0.506 QALY。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">肥胖或超重伴 ≥1 種肥胖相關併發症成人（無 2型糖尿病）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">tirzepatide (MTD) + 食療與運動</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">semaglutide (MTD) + 食療與運動</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">增量成本效益比 (ICER)、每位患者成本節省、QALY 得增、2型糖尿病與心血管疾病發生率降低</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">第二型糖尿病</span><span class="tag">心血管保護</span><span class="tag">真實世界數據</span><span class="tag">代謝效應</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42012820/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#4</span>
+            <span class="emoji-icon">📊</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>Effect of Medications for Type 2 Diabetes on Cardiovascular Events and Mortality: A Comprehensive Pairwise and Network Meta-Analysis.</h3>
+          <p class="journal-source">Diabetes, obesity & metabolism &middot; Effect of Medications for Type 2 Diabetes on Cardiovascular Events and Mortality: A Comprehensive Pairwise and Network Meta-Analysis.</p>
+          <p>網羅 93 項 RCT 的網狀分析證實，GLP-1 受體促效劑、SGLT2 抑制劑與 tirzepatide 顯著降低 MACE 與全因死亡率，其中 tirzepatide 對 mortality 的獲益尤為顯著 (OR 0.72)。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">2型糖尿病患者</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">GLP-1 RA、SGLT2i、tirzepatide 等降血糖藥物</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">安慰劑或有效對照藥物</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">主要不良心血管事件 (MACE)、全因死亡率</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">心血管保護</span><span class="tag">代謝效應</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42530338/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#5</span>
+            <span class="emoji-icon">💓</span>
+            <span class="utility-mid">中实用性</span>
+          </div>
+          <h3>Tirzepatide and SGLT2 Inhibitors for Heart Failure With Preserved Ejection Fraction and Obesity: Entering a New Cardiometabolic Therapeutic Era.</h3>
+          <p class="journal-source">Endocrinology, diabetes & metabolism &middot; Tirzepatide and SGLT2 Inhibitors for Heart Failure With Preserved Ejection Fraction and Obesity: Entering a New Cardiometabolic Therapeutic Era.</p>
+          <p>tirzepatide 在 SUMMIT 試驗中顯著減重 >20%、減少心臟周圍脂肪組織並改善生活品質評分，與 SGLT2i 互補作用於心腎腫軸，提示其在肥胖相關 HFpEF 中的巨大潛力。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">肥併伴 HFpEF 患者</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">tirzepatide 與 SGLT2 抑制劑</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">標準療療或安慰劑</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">體重變化、心臟周圍/心外脂肪組織減少、KCCQ 評分改善、心衰住院率</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">心血管保護</span><span class="tag">肥胖與體重</span><span class="tag">第二型糖尿病</span><span class="tag">代謝效應</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42533465/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div></div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>📚</span>其他值得關注的文獻</div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">📊</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>Outpatient Dispensing Patterns and Changes in Tirzepatide Strength Mix in Japan: A Study Using the National Open Claims Data.</h3>
+          <p class="journal-source">Cureus</p>
+          <p>日本門診 tirzeparatide 使用量快速成長，86.2% 為門診外配藥，顯示其在真實世界中的廣泛採用與給藥模式穩定擴散。</p>
+          <div class="card-footer">
+            <span class="tag">真實世界數據</span><span class="tag">第二型糖尿病</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42535213/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">👶</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>Glucagon-like peptide-1 receptor agonists in pediatrics: The pancreatology perspective.</h3>
+          <p class="journal-source">Journal of pediatric gastroenterology and nutrition</p>
+          <p>探討 GLP-1 受體促效劑在兒童中的應用，聚焦胰腺相關風險與代謝益處，但缺乏摘要限制深度解析。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">肥胖與體重</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42535519/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧬</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>Early changes in renal function do not appear to mediate cardiovascular risk with dapagliflozin plus semaglutide: a real-world observational hypothesis-generating cohort study.</h3>
+          <p class="journal-source">Expert review of cardiovascular therapy</p>
+          <p>真實世界數據顯示，dapagliflozin 加 semaglutide 的早期 eGFR 變化不介導其對心衰/心肌梗塞的影響，提示雙藥物心腎獲益可能經獨立路徑發揮作用。</p>
+          <div class="card-footer">
+            <span class="tag">慢性腎病</span><span class="tag">心血管保護</span><span class="tag">真實世界數據</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42535667/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧠</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>The emerging role of glucagon-like peptide-1 receptor agonists in idiopathic intracranial hypertension: Therapeutic potential and challenges.</h3>
+          <p class="journal-source">Indian journal of ophthalmology</p>
+          <p>GLP-1 受體促效劑透過顯著減重降低顱內壓，並可能直接影響腦脊髓液生成，為特發性腦內高壓提供新療法選項，但成本與長期數據尚待確認。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">代謝效應</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42535806/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💰</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>Investigating the Incremental Cost and Utilization Burden of Obstructive Sleep Apnea in Overweight to Severely Obese Patients.</h3>
+          <p class="journal-source">Diabetes, obesity & metabolism</p>
+          <p>合併 OSA 的肥胖患者額外醫療成本顯著增加，即使長期使用 GLP-1 RA 也不免此負擔，顯示需同時治療基礎疾病與共病。</p>
+          <div class="card-footer">
+            <span class="tag">睡眠呼吸中止症</span><span class="tag">肥胖與體重</span><span class="tag">真實世界數據</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42259626/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🔬</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>Weekly Glucagon-Like Peptide-1 Receptor Agonists in Type 1 Diabetes: What We Know So Far and Future Trials.</h3>
+          <p class="journal-source">Endocrinology and metabolism clinics of North America</p>
+          <p>週一次 GLP-1 受體促效劑作為 1型糖尿病的輔助療法，雖未獲核准，但顯示潛在益處於血糖控制與體重管理，需更多試驗證實。</p>
+          <div class="card-footer">
+            <span class="tag">第一型糖尿病</span><span class="tag">肥胖與體重</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42526995/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💊</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>Oral GLP-1RA TERN-601 for Adults With Obesity/Overweight: Placebo-Controlled, Multiple-Ascending-Dose, Phase 1 and 2 Studies.</h3>
+          <p class="journal-source">Obesity (Silver Spring, Md.)</p>
+          <p>口服小分子 GLP-1 受體促效劑 TERN-601 顯示劑量依賴減重，但肝毒性訊號導致臨床開發終止，提醒口服製劑開發需兼顧疗效與安全。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">試驗</span><span class="tag">副作用</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42528333/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🥗</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>Nutritional considerations for glucagon-like peptide-based therapies: An Asian Indian consensus recommendation.</h3>
+          <p class="journal-source">Obesity pillars</p>
+          <p>為亞洲印度人使用 GLP-based 療法提供結構化營養支援共識，強調早期評估、均衡飲食與肌肉維持，以預防營養不良與代謝彈回。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">第二型糖尿病</span><span class="tag">代謝效應</span><span class="tag">營養</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42529748/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🔬</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>Bivalent gambogic acid-functionalized curcumin nanoparticles with insulin modulate the gut-liver-kidney network in type 2 diabetes.</h3>
+          <p class="journal-source">Journal of controlled release : official journal of the Controlled Release Society</p>
+          <p>納米藥物結合胰島素調節腸-肝-腎網路，改善葡萄糖穩定性與內分泌訊號，同時抑制炎症與腎纖維化，提供雙性別微生物修復的新機制。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">代謝效應</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42532147/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">📈</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>Enhancing economic modelling in obesity: integrating novel type 2 diabetes progression & obstructive sleep apnea remission - a UK case study.</h3>
+          <p class="journal-source">Journal of medical economics</p>
+          <p>更新英國肥胖健經模型，納入 SURMOUNT 試驗證據與 OSA 緩解模型，顯著改善成本效益估計與模型效率，支持 tirzepatide 的長期價值。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">第二型糖尿病</span><span class="tag">睡眠呼吸中止症</span><span class="tag">健經模型</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42021523/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💓</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>SURPASS-CVOT and the Emerging Biology of Cardiometabolic Benefit.</h3>
+          <p class="journal-source">Diabetes, obesity & metabolism</p>
+          <p>探討 SURPASS-CVOT 試驗設計與 tirzepatide 心代謝獲益的新興生物學基礎，但缺乏摘要限制資訊密度。</p>
+          <div class="card-footer">
+            <span class="tag">心血管保護</span><span class="tag">第二型糖尿病</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42530340/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧪</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>Design of a metabolically-stable peptide therapeutic with triple-hormone-receptor agonist activity.</h3>
+          <p class="journal-source">Journal of computer-aided molecular design</p>
+          <p>利用計算機輔助設計穩定的三重激肽（GLP-1、GIP、GCG）受體促效劑，預示未來口服低劑量製劑與減少胃腸副作用的可能。</p>
+          <div class="card-footer">
+            <span class="tag">代謝效應</span><span class="tag">試驗</span><span class="tag">肥胖與體重</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42530676/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💊</span>
+            <span class="utility-high utility-sm">高</span>
+          </div>
+          <h3>Cost-effectiveness of tirzepatide versus semaglutide for patients with obesity or overweight in the US: evidence from the SURMOUNT-5 head-to-head phase-3 trial.</h3>
+          <p class="journal-source">Journal of medical economics</p>
+          <p>基於頭對頭第 III 期 SURMOUNT-5 試驗數據的模型顯示，tirzepatide 在美國社會視角下比 semaglutide 更具成本效益，每位患者可節省 $41,688 並獲得額外 0.506 QALY。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">第二型糖尿病</span><span class="tag">心血管保護</span><span class="tag">真實世界數據</span><span class="tag">代謝效應</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42012820/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">❤️</span>
+            <span class="utility-high utility-sm">高</span>
+          </div>
+          <h3>Cardio-Protective Effect of GLP-1 Agonists in OSA Patients: A Study of Cardiovascular Risk.</h3>
+          <p class="journal-source">Laryngoscope investigative otolaryngology</p>
+          <p>GLP-1 受體促效劑在未使用 CPAP 的 OSA 患者中顯著降低心肌梗塞、心衰、心跳停止等心血管風險，顯示其獨特心血管保護潛力，超越傳統呼吸治療。</p>
+          <div class="card-footer">
+            <span class="tag">心血管保護</span><span class="tag">睡眠呼吸中止症</span><span class="tag">肥胖與體重</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42453328/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🐒</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>40-Week Repeat-Dose Toxicity, Toxicokinetics, and Immunogenicity of Efsubaglutide Alfa Following Subcutaneous Administration in Cynomolgus Monkeys.</h3>
+          <p class="journal-source">Regulatory toxicology and pharmacology : RTP</p>
+          <p>新長效 GLP-1 受體促效劑 efsubaglutide alfa 在食盧猴中顯示良好安全性與代謝穩定性，無嚴重毒性，支持其進入臨床開發階段。</p>
+          <div class="card-footer">
+            <span class="tag">試驗</span><span class="tag">副作用</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42532462/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🚬</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>GLP-1 agonists for smoking cessation and post-cessation weight management: A systematic review and meta-analysis of randomized trials.</h3>
+          <p class="journal-source">Tobacco induced diseases</p>
+          <p>GLP-1 受體促效劑對戒煙成功率無顯著影響，但可顯著減少戒煙後體重增加 (平均減 4.14 kg)，提示其在體重管理中的輔助價值。</p>
+          <div class="card-footer">
+            <span class="tag">成癮行為</span><span class="tag">肥胖與體重</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42529623/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💓</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>Tirzepatide and SGLT2 Inhibitors for Heart Failure With Preserved Ejection Fraction and Obesity: Entering a New Cardiometabolic Therapeutic Era.</h3>
+          <p class="journal-source">Endocrinology, diabetes & metabolism</p>
+          <p>tirzepatide 在 SUMMIT 試驗中顯著減重 >20%、減少心臟周圍脂肪組織並改善生活品質評分，與 SGLT2i 互補作用於心腎腫軸，提示其在肥胖相關 HFpEF 中的巨大潛力。</p>
+          <div class="card-footer">
+            <span class="tag">心血管保護</span><span class="tag">肥胖與體重</span><span class="tag">第二型糖尿病</span><span class="tag">代謝效應</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42533465/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">⏱️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>First-in-Human Study of a Long-Acting GLP-1 Receptor Agonist (TE-8105) in Overweight or Obese Adults Without Type 2 Diabetes Mellitus.</h3>
+          <p class="journal-source">Journal of clinical pharmacology</p>
+          <p>長效 GLP-1 受體促效劑 TE-8105 在超重/肥胖無糖尿病成人中顯示可接受安全性與適度減重 (平均 2.06%)，半長約 120 小時，支持低頻給藥潛力。</p>
+          <div class="card-footer">
+            <span class="tag">肥胖與體重</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42530137/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧠</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>Prescription Sequence Symmetry Analysis of Glucagon-Like Peptide-1 Receptor Agonists and Neuropsychiatric Conditions.</h3>
+          <p class="journal-source">Clinical pharmacology and therapeutics</p>
+          <p>真實世界處方序列分析發現 GLP-1 RA 使用與後續抗憂鬱藥物及物質使用障礙藥物啟用呈負相關，提示其可能具備穩定情緒的間接益處。</p>
+          <div class="card-footer">
+            <span class="tag">憂鬱症</span><span class="tag">真實世界數據</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42533561/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💉</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>Efficacy and safety of once-weekly subcutaneous zenagamtide, a novel unimolecular GLP-1 and amylin receptor agonist, in type 2 diabetes: a multicentre, randomised, parallel, double-blind, placebo-controlled, dose-finding, phase 2 trial.</h3>
+          <p class="journal-source">Lancet (London, England)</p>
+          <p>雙週給藥的 zenagamtide (GLP-1/amylin/calcitonin 三受體激肽) 在 2型糖尿病中顯示劑量依賴降 HbA1c 與減重潛力，為新一代週用注射藥物提供早期證據。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42532080/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧬</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>Sodium-Glucose Cotransporter-Inhibitors, Incretin Receptor Agonists (Glucagon-Like Peptide-1 Receptor Agonists and Dual Glucose-Dependent Insulinotropic Polypeptide/Glucagon-Like Peptide-1 Receptor Agonists), and Finerenone for Kidney Protection in Type 1 Diabetes.</h3>
+          <p class="journal-source">Endocrinology and metabolism clinics of North America</p>
+          <p>探討 SGLT2 抑制劑、GLP-1 受體促效劑與 finerenone 在 1型糖尿病腎保護中的聯合潛力，強調多靶點介入對抗糖尿病腎病的必要性。</p>
+          <div class="card-footer">
+            <span class="tag">第一型糖尿病</span><span class="tag">慢性腎病</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42526999/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">⚖️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>Cardiovascular Effects of Glucagon Receptor Signaling Alone and Combined With Glucagon-Like Peptide-1 Receptor Signaling in Multiagonists: A Narrative Review With a Translational Focus.</h3>
+          <p class="journal-source">Journal of the American Heart Association</p>
+          <p>雙重激肽藥物（如 mazduitide、survodutide）透過同時激活 glucagon 與 GLP-1 受體，可能改善血糖與血壓，但需警惕心律與 QT 延長風險，未來試驗有待澄清淨獲益。</p>
+          <div class="card-footer">
+            <span class="tag">心血管保護</span><span class="tag">第二型糖尿病</span><span class="tag">代謝效應</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42535526/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧬</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>Real-World Effectiveness and Safety of Finerenone in People With Type 2 Diabetes and Chronic Kidney Disease: A Spanish Multicentre Retrospective Observational Study (MEDFINE-RWD).</h3>
+          <p class="journal-source">Diabetes, obesity & metabolism</p>
+          <p>在真實世界中，finerenone 在 2型糖尿病與 CKD 患者中尿蛋白減少 34.5%，高依附率與良好安全性支持其在併用 SGLT2i/GLP-1 RA 基礎上的腎保護價值。</p>
+          <div class="card-footer">
+            <span class="tag">慢性腎病</span><span class="tag">第二型糖尿病</span><span class="tag">真實世界數據</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42533276/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🔬</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>Therapeutic potential of GLP-1 receptor agonists and SGLT2 inhibitors in diabetic neuropathy: a critical appraisal.</h3>
+          <p class="journal-source">Diabetology & metabolic syndrome</p>
+          <p>儘管前臨床證據支持 GLP-1 RA 與 SGLT2i 對糖尿病神經病變的潛在療效，但臨床試驗資料仍缺乏，真實世界應用亦見高非反應率，需更多長期 RCT 證實其病 modificatory 作用。</p>
+          <div class="card-footer">
+            <span class="tag">第二型糖尿病</span><span class="tag">試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42533340/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💵</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>Spending and Affordability of Glucagon-Like Peptide-1 Receptor Agonists and Other Incretin Mimetics in the United States, 2013-2023.</h3>
+          <p class="journal-source">Journal of general internal medicine</p>
+          <p>美國 GLP-1 藥物總支出近十年增近 15 倍，高自付費負擔集中於無保險與低收入群體，凸顯 affordability 為長期使用的關鍵障礙。</p>
+          <div class="card-footer">
+            <span class="tag">真實世界數據</span><span class="tag">副作用</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42533264/" target="_blank">PubMed →</a>
+          </div>
+        </div></div>
+
+  <div class='topic-section section'><div class='section-title'><span class='section-icon'>📊</span>主題分佈</div>
+            <div class="topic-row">
+              <span class="topic-name">肥胖與體重</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:100%"></div></div>
+              <span class="topic-count">11</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">第二型糖尿病</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:90%"></div></div>
+              <span class="topic-count">10</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">心血管保護</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:72%"></div></div>
+              <span class="topic-count">8</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">代謝效應</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:81%"></div></div>
+              <span class="topic-count">9</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">真實世界數據</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:63%"></div></div>
+              <span class="topic-count">7</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">試驗</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:63%"></div></div>
+              <span class="topic-count">7</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">睡眠呼吸中止症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:36%"></div></div>
+              <span class="topic-count">4</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">慢性腎病</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:36%"></div></div>
+              <span class="topic-count">4</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">副作用</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:27%"></div></div>
+              <span class="topic-count">3</span>
+            </div></div>
+
+  <div class='keywords-section section'><div class='section-title'><span class='section-icon'>🏷️</span>關鍵字</div><div class='keywords'><span class="keyword">tirzepatide</span><span class="keyword">GLP-1受體促效劑</span><span class="keyword">心血管保護</span><span class="keyword">肥胖與體重</span><span class="keyword">第二型糖尿病</span><span class="keyword">睡眠呼吸中止症</span><span class="keyword">真實世界數據</span><span class="keyword">試驗</span><span class="keyword">代謝效應</span></div></div>
+
+  <div class="clinic-banner">
+    <a href="https://www.leepsyclinic.com/" class="clinic-link" target="_blank">
+      <span class="clinic-icon">🏥</span>
+      <div>
+        <div class="clinic-name">李政洋身心診所首頁</div>
+        <div class="clinic-desc">www.leepsyclinic.com</div>
+      </div>
+      <span class="clinic-arrow">→</span>
+    </a>
+    <div class="subscribe-banner">
+      <a href="https://blog.leepsyclinic.com/" class="subscribe-link" target="_blank">
+        <span class="sub-icon">📬</span>
+        <div>
+          <div class="sub-name">訂閱電子報</div>
+          <div class="sub-desc">blog.leepsyclinic.com</div>
+        </div>
+        <span class="sub-arrow">→</span>
+      </a>
+      <a href="https://buymeacoffee.com/CYlee" class="subscribe-link" target="_blank">
+        <span class="sub-icon">☕</span>
+        <div>
+          <div class="sub-name">Buy me a coffee</div>
+          <div class="sub-desc">buymeacoffee.com/CYlee</div>
+        </div>
+        <span class="sub-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <span>資料來源：PubMed &middot; 分析模型：nvidia/nemotron-3-super-120b-a12b</span>
+    <span><a href="https://github.com/u8901006/GLP1-brain">GitHub</a></span>
+  </footer>
+</div>
+</body>
+</html>
