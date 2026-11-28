@@ -16,8 +16,7 @@ from datetime import datetime, timezone, timedelta
 import httpx
 
 API_BASE = "https://integrate.api.nvidia.com/v1"
-MODEL_NAME = "nvidia/nemotron-3-super-120b-a12b"
-FALLBACK_MODEL = "nvidia/nemotron-3-ultra-550b-a55b"
+MODEL_NAME = "nvidia/nemotron-3-ultra-550b-a55b"
 
 SYSTEM_PROMPT = (
     "你是 GLP-1 受體促效劑領域的資深醫藥記者與分析師。你的任務是：\n"
@@ -199,7 +198,7 @@ def analyze_papers(api_key: str, papers_data: dict, seen_pmids: set = None) -> d
         "chat_template_kwargs": {"enable_thinking": False},
     }
 
-    models_to_try = [MODEL_NAME, FALLBACK_MODEL]
+    models_to_try = [MODEL_NAME]
 
     for model in models_to_try:
         payload["model"] = model
