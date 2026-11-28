@@ -6,11 +6,12 @@ Targets Q1/Q2 journals and covers GLP-1RA, obesity, diabetes, and extension topi
 
 import json
 import sys
+import time
 import argparse
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from urllib.request import urlopen, Request
-from urllib.error import URLError
+from urllib.error import HTTPError
 from urllib.parse import quote_plus
 
 PUBMED_SEARCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
@@ -82,19 +83,25 @@ def build_queries(days: int = 7) -> list[str]:
     return queries
 
 
+def read_pubmed(url: str, timeout: int) -> str:
+    for attempt in range(4):
+        time.sleep(0.4)
+        try:
+            with urlopen(Request(url, headers=HEADERS), timeout=timeout) as response:
+                return response.read().decode()
+        except HTTPError as error:
+            if attempt == 3 or (error.code != 429 and error.code < 500):
+                raise
+            error.close()
+            time.sleep(2 ** (attempt + 1))
+
+
 def search_papers(query: str, retmax: int = 20) -> list[str]:
     params = (
         f"?db=pubmed&term={quote_plus(query)}&retmax={retmax}&sort=date&retmode=json"
     )
-    url = PUBMED_SEARCH + params
-    try:
-        req = Request(url, headers=HEADERS)
-        with urlopen(req, timeout=30) as resp:
-            data = json.loads(resp.read().decode())
-        return data.get("esearchresult", {}).get("idlist", [])
-    except Exception as e:
-        print(f"[ERROR] PubMed search failed: {e}", file=sys.stderr)
-        return []
+    data = json.loads(read_pubmed(PUBMED_SEARCH + params, timeout=30))
+    return data["esearchresult"]["idlist"]
 
 
 def fetch_details(pmids: list[str]) -> list[dict]:
@@ -102,14 +109,7 @@ def fetch_details(pmids: list[str]) -> list[dict]:
         return []
     ids = ",".join(pmids)
     params = f"?db=pubmed&id={ids}&retmode=xml"
-    url = PUBMED_FETCH + params
-    try:
-        req = Request(url, headers=HEADERS)
-        with urlopen(req, timeout=60) as resp:
-            xml_data = resp.read().decode()
-    except Exception as e:
-        print(f"[ERROR] PubMed fetch failed: {e}", file=sys.stderr)
-        return []
+    xml_data = read_pubmed(PUBMED_FETCH + params, timeout=60)
 
     papers = []
     try:
@@ -184,8 +184,10 @@ def fetch_details(pmids: list[str]) -> list[dict]:
                 }
             )
     except ET.ParseError as e:
-        print(f"[ERROR] XML parse failed: {e}", file=sys.stderr)
+        raise RuntimeError("Unable to parse PubMed details") from e
 
+    if not papers:
+        raise RuntimeError("PubMed returned no details for matching PMIDs")
     return papers
 
 
